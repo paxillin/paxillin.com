@@ -154,7 +154,7 @@ const Release = () => {
         <div className="container mx-auto text-center">
           <Badge
             variant="secondary"
-            className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-pexilllin-primary border-0"
+            className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-paxillin-primary border-0"
           >
            Release Roadmap 2026
           </Badge>
@@ -241,7 +241,7 @@ Be part of the revolution in professional and social healthcare networking.
                 <CardContent className="p-0">
                   <div className="grid grid-cols-1 cursor-pointer lg:grid-cols-3 gap-0">
                     {/* Phase Header */}
-                    <div className={`p-8 bg-pexilllin-primary text-white`}>
+                    <div className={`p-8 bg-paxillin-primary text-white`}>
                       <div className="flex items-center justify-between mb-4">
                         <Badge
                           variant="secondary"
@@ -300,7 +300,7 @@ Be part of the revolution in professional and social healthcare networking.
                               key={idx}
                               className="flex items-center justify-start text-left text-sm text-gray-600"
                             >
-                              <div className="w-2 h-2 bg-pexilllin-primary rounded-full mr-3 flex-shrink-0"></div>
+                              <div className="w-2 h-2 bg-paxillin-primary rounded-full mr-3 flex-shrink-0"></div>
                               {goal}
                             </li>
                           ))}
@@ -323,7 +323,7 @@ Be part of the revolution in professional and social healthcare networking.
                       </div>
 
                       <Button 
-                        className={`w-full bg-pexilllin-primary text-white py-3 text-lg font-semibold transition-all duration-300 transform hover:scale-105`}
+                        className={`w-full bg-paxillin-primary text-white py-3 text-lg font-semibold transition-all duration-300 transform hover:scale-105`}
                       >
                         Apply for {phase.title}
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -338,7 +338,7 @@ Be part of the revolution in professional and social healthcare networking.
       </section>
 
       {/* CTA Section */}
-      {/* <section className="py-24 px-4 bg-pexilllin-primary">
+      {/* <section className="py-24 px-4 bg-paxillin-primary">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
           Don't miss your chance to shape the future
@@ -349,14 +349,14 @@ Join our testing program and be among the first healthcare professionals to expe
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-white text-pexilllin-primary hover:bg-gray-100 px-8 py-4 md:text-lg font-semibold"
+              className="bg-white text-paxillin-primary hover:bg-gray-100 px-8 py-4 md:text-lg font-semibold"
             >
               Apply for Alpha Testing
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white text-pexilllin-primary hover:bg-white px-8 py-4 md:text-lg font-semibold"
+              className="border-2 border-white text-paxillin-primary hover:bg-white px-8 py-4 md:text-lg font-semibold"
             >
               Join Beta Waitlist
             </Button>

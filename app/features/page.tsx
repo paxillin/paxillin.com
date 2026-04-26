@@ -149,7 +149,7 @@ const Features = () => {
           <div className="container mx-auto text-center">
             <Badge
               variant="secondary"
-              className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-pexilllin-primary border-0"
+              className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-paxillin-primary border-0"
             >
               Complete Feature Overview
             </Badge>
@@ -203,7 +203,7 @@ const Features = () => {
                                 alt="paxillin"
                                 className="w-8 h-8"
                               />
-                              <span className="text-lg font-bold text-pexilllin-primary">
+                              <span className="text-lg font-bold text-paxillin-primary">
                                 Paxillin
                               </span>
                             </div>
@@ -304,8 +304,8 @@ const Features = () => {
 
                         {/* Solution Description */}
                         <div className="mb-6">
-                          <h4 className="font-semibold text-pexilllin-primary mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-pexilllin-primary rounded-full"></div>
+                          <h4 className="font-semibold text-paxillin-primary mb-3 flex items-center gap-2">
+                            <div className="w-2 h-2 bg-paxillin-primary rounded-full"></div>
                             Our Solution
                           </h4>
                           <p className="text-gray-700 leading-relaxed">
@@ -341,7 +341,7 @@ const Features = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-4 bg-pexilllin-primary">
+        <section className="py-24 px-4 bg-paxillin-primary">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Ready to Transform Your Medical Network?

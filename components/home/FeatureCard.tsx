@@ -1,11 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface FeatureCardProps {
-  icon: string;
+  icon: LucideIcon;
   title: string;
   description: string;
-  color: string;
   delay?: number;
 }
 
@@ -13,30 +13,30 @@ const FeatureCard = ({
   icon: Icon,
   title,
   description,
-  color,
   delay = 0,
 }: FeatureCardProps) => {
   return (
     <Card
-      className="group  transition-all duration-500 transform  border-2 bg-white/70 backdrop-blur-sm animate-fade-in border-pexilllin-primary rounded-lg"
+      className={cn(
+        "group animate-fade-in border-paxillin-mist/40 bg-white transition-shadow duration-300",
+        "hover:shadow-card"
+      )}
       style={{ animationDelay: `${delay}s` }}
     >
       <CardContent className="p-8">
-        <div
-          className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6  transition-transform duration-300 mx-auto`}
-        >
-           <img src={Icon} alt={title} className="h-8 w-8" />
+        <div className="mb-6 flex justify-center">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-paxillin-mist/50 bg-paxillin-parchment/50">
+            <Icon className="h-8 w-8 text-paxillin-sage" strokeWidth={1.75} />
+          </div>
         </div>
 
-        <h3 className="text-xl font-bold mb-4 text-center text-pexilllin-primary transition-colors duration-300">
+        <h3 className="mb-4 text-center font-heading text-xl font-semibold text-paxillin-secondary">
           {title}
         </h3>
 
-        <p className="text-gray-600 px-2  leading-relaxed text-center text-base max-w-xs mx-auto">
+        <p className="mx-auto max-w-xs text-center text-base leading-relaxed text-paxillin-ink/70">
           {description}
         </p>
-
-        <div className="mt-6 w-12 h-1 bg-pexilllin-primary rounded-full opacity-0  transition-opacity duration-300"></div>
       </CardContent>
     </Card>
   );

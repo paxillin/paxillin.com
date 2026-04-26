@@ -11,14 +11,26 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
     },
     extend: {
+      maxWidth: {
+        content: "var(--content-max)",
+      },
       fontFamily: {
-        serif: ['"Times New Roman"', "Times", "serif"],
+        serif: ['"Cormorant Garamond"', "Times New Roman", "Georgia", "serif"],
+        heading: [
+          '"Cormorant Garamond"',
+          "Times New Roman",
+          "Georgia",
+          "serif",
+        ],
+      },
+      boxShadow: {
+        card: "0 4px 20px rgba(0, 0, 0, 0.05)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,27 +76,37 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        pexilllin: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
-          primary: "#138DB6",
-          secondary: "#193F63",
-          accent: "#8b5cf6",
-          dark: "#075985",
+        paxillin: {
+          sage: "#769382",
+          sand: "#c8b8a4",
+          mist: "#c0c3b9",
+          parchment: "#f3efe3",
+          /* CTA / links on brand */
+          primary: "#3a7bd5",
+          /* Headlines & emphasis text */
+          secondary: "#2c3a35",
+          ink: "#2c3a35",
+          teal: "#56ccf2",
+          /* Legacy scale kept for rare use */
+          50: "#f4f7f5",
+          100: "#e8edea",
+          200: "#d0d8d2",
+          300: "#a8b5ac",
+          400: "#769382",
+          500: "#5a7568",
+          600: "#475e54",
+          700: "#3a4d45",
+          800: "#2c3a35",
+          900: "#1e2824",
         },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        button: "var(--radius-button)",
+        card: "0.875rem",
+        "card-lg": "1rem",
       },
       keyframes: {
         "accordion-down": {
@@ -243,6 +265,7 @@ export default {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-mesh": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "paxillin-accent": "linear-gradient(120deg, #3a7bd5 0%, #6fcf97 100%)",
       },
     },
   },

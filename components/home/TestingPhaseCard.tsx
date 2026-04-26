@@ -30,7 +30,7 @@ const TestingPhaseCard = ({
     <Card 
       className={`cursor-pointer transition-all duration-300 transform hover:-translate-y-2 animate-fade-in ${
         isSelected 
-          ? 'ring-2 ring-pexilllin-primary shadow-xl bg-gradient-to-br from-blue-50 to-purple-50' 
+          ? 'ring-2 ring-paxillin-primary shadow-xl bg-gradient-to-br from-blue-50 to-purple-50' 
           : 'hover:shadow-lg bg-white/70 backdrop-blur-sm'
       }`}
       style={{ animationDelay: `${delay}s` }}
@@ -44,7 +44,7 @@ const TestingPhaseCard = ({
           </div>
           <Badge 
             variant={isSelected ? "default" : "secondary"}
-            className={`${isSelected ? 'bg-pexilllin-primary text-white' : 'bg-gray-200 text-gray-700'}`}
+            className={`${isSelected ? 'bg-paxillin-primary text-white' : 'bg-gray-200 text-gray-700'}`}
           >
             {timeline}
           </Badge>
@@ -71,7 +71,7 @@ const TestingPhaseCard = ({
         
         {isSelected && (
           <div className="p-4 bg-blue-100 rounded-lg border border-blue-200">
-            <p className="text-sm text-pexilllin-primary font-medium">
+            <p className="text-sm text-paxillin-primary font-medium">
               ✨ Selected for registration
             </p>
           </div>

@@ -6,7 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
 
 // ModalContactForm.jsx
 // A simple, accessible popup modal with Name, Email, Phone and Submit button.
-// Uses Tailwind CSS classes (pexilllin-primary & pexilllin-secondary).
+// Tailwind: primary CTA, calm modal chrome.
 const validatePhone = (value: string) => {
   if (!value) return true; // Phone is optional
   // Optional +91, followed by 10 digits starting with 6-9
@@ -142,9 +142,9 @@ export default function ModalContactForm({
         className="relative w-full max-w-md rounded-2xl shadow-2xl bg-white ring-1 ring-black/5 overflow-hidden"
       >
         {/* header */}
-        <div className="px-6 py-4 flex items-center justify-between bg-gradient-to-r from-pexilllin-primary to-pexilllin-secondary">
-          <h2 id="modal-title" className="text-white text-lg font-semibold">
-            Be the First to Join Paxillin
+        <div className="px-6 py-4 flex items-center justify-between bg-primary">
+          <h2 id="modal-title" className="text-primary-foreground text-lg font-semibold">
+            Request early access
           </h2>
           <button
             onClick={onClose}
@@ -158,7 +158,7 @@ export default function ModalContactForm({
         {/* body / form */}
         <div className="px-6 py-6 text-left">
           {submitted ? (
-            <p className="text-center text-lg font-medium text-pexilllin-primary">
+            <p className="text-center text-lg font-medium text-primary">
               {successMessage}
             </p>
           ) : (
@@ -223,7 +223,7 @@ export default function ModalContactForm({
                   disabled={isSubmitting}
                   className={`mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 disabled:opacity-50 ${phoneError
                     ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-200 focus:ring-pexilllin-primary"
+                    : "border-gray-200 focus:ring-primary"
                     }`}
                 />
                 {phoneError && (
@@ -235,7 +235,7 @@ export default function ModalContactForm({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 bg-pexilllin-primary text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 inline-flex items-center justify-center rounded-button px-4 py-2.5 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
@@ -252,8 +252,8 @@ export default function ModalContactForm({
 
               <style>{`
             input:focus {
-              box-shadow: 0 0 0 4px rgba(19,141,182,0.12);
-              border-color: var(--color-pexilllin-secondary) !important;
+              box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.15);
+              border-color: var(--paxillin-cta) !important;
             }
           `}</style>
             </form>

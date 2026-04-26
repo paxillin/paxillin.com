@@ -199,7 +199,7 @@ const Social = () => {
           <div className="flex flex-col md:flex-row gap-2 items-center justify-center mb-4">
             <Badge
               variant="secondary"
-              className="px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-pexilllin-primary border-0"
+              className="px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-paxillin-primary border-0"
             >
               Social Community Hub
             </Badge>
@@ -216,7 +216,7 @@ const Social = () => {
 
      <section className="py-12 bg-gray-50">
   <div className="max-w-5xl mx-auto px-4">
-    {/* <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-pexilllin-primary">
+    {/* <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-paxillin-primary">
       Connect With Us
     </h2> */}
 
@@ -266,7 +266,7 @@ const Social = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {communityStats.map((stat, index) => (
               <Card key={stat.metric} className="text-center p-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <stat.icon className="h-8 w-8 mx-auto mb-3 text-pexilllin-primary" />
+                <stat.icon className="h-8 w-8 mx-auto mb-3 text-paxillin-primary" />
                 <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
                 <div className="text-sm text-gray-600 mb-2">{stat.metric}</div>
                 <div className="text-xs text-emerald-600 font-semibold">{stat.growth} this month</div>
@@ -387,7 +387,7 @@ const Social = () => {
               {upcomingContent.map((content, index) => (
                 <Card
                   key={index}
-                  className="hover:shadow-lg transition-all duration-300 border-l-4 border-pexilllin-primary bg-white/80 animate-fade-in"
+                  className="hover:shadow-lg transition-all duration-300 border-l-4 border-paxillin-primary bg-white/80 animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardContent className="p-6">
@@ -415,7 +415,7 @@ const Social = () => {
       </section> */}
 
       {/* Newsletter Signup */}
-      {/* <section className="py-24 px-4 bg-pexilllin-primary">
+      {/* <section className="py-24 px-4 bg-paxillin-primary">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Never Miss an Update
@@ -429,7 +429,7 @@ const Social = () => {
               placeholder="Enter your email"
               className="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <Button className="bg-white text-pexilllin-primary hover:bg-gray-100 px-8 py-6 font-semibold">
+            <Button className="bg-white text-paxillin-primary hover:bg-gray-100 px-8 py-6 font-semibold">
               Join Us
             </Button>
           </div>

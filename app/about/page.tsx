@@ -214,7 +214,7 @@ s">Paxillin</span>
             <Card className="p-6 md:p-8 border-0 shadow-xl bg-gradient-to-br from-blue-50 to-blue-100">
               <CardContent className="p-0">
                 <div className="flex text-left items-center mb-6">
-                  <Target className="h-12  w-12 text-pexilllin-primary mr-4" />
+                  <Target className="h-12  w-12 text-paxillin-primary mr-4" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
                     Our Mission
                   </h2>
@@ -277,7 +277,7 @@ s">Paxillin</span>
                 <CardContent className="p-0">
                   <div className="flex items-start space-x-4">
                     <div className="p-3 bg-blue-100 rounded-lg flex-shrink-0">
-                      <value.icon className="h-8 w-8 text-pexilllin-primary" />
+                      <value.icon className="h-8 w-8 text-paxillin-primary" />
                     </div>
                     <div>
                       <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
@@ -316,11 +316,11 @@ s">Paxillin</span>
                 className="flex flex-col md:flex-row items-start mb-12 last:mb-0"
               >
                 <div className="flex-shrink-0 w-full md:w-24 text-center md:text-right mr-8">
-                  <span className="text-2xl font-bold text-pexilllin-primary">
+                  <span className="text-2xl font-bold text-paxillin-primary">
                     {milestone.year}
                   </span>
                 </div>
-                <div className="hidden md:block flex-shrink-0 w-4 h-4 bg-pexilllin-primary rounded-full mt-2 mr-8 relative">
+                <div className="hidden md:block flex-shrink-0 w-4 h-4 bg-paxillin-primary rounded-full mt-2 mr-8 relative">
                   {index < milestones.length - 1 && (
                     <div className="absolute top-4 left-1/2 w-0.5 md:h-24 bg-blue-300 transform -translate-x-1/2"></div>
                   )}
@@ -411,13 +411,13 @@ s">Paxillin</span>
                     <CardContent className="p-0">
                       <div className="flex items-start space-x-4">
                         <div className="p-3 bg-blue-100 rounded-lg flex-shrink-0">
-                          <info.icon className="h-6 w-6 text-pexilllin-primary" />
+                          <info.icon className="h-6 w-6 text-paxillin-primary" />
                         </div>
                         <div>
                           <h4 className="text-lg font-semibold text-gray-900 mb-1">
                             {info.title}
                           </h4>
-                          <p className="text-pexilllin-primary font-medium mb-2">
+                          <p className="text-paxillin-primary font-medium mb-2">
                             {info.details}
                           </p>
                           <p className="text-sm text-gray-600">
@@ -510,14 +510,14 @@ s">Paxillin</span>
                         value={formData.message}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-pexilllin-primary focus:border-pexilllin-primary"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-paxillin-primary focus:border-paxillin-primary"
                         placeholder="Tell us how we can help you..."
                       />
                     </div>
 
                     <Button
                       type="submit"
-                      className="w-full bg-pexilllin-primary text-white py-3"
+                      className="w-full bg-paxillin-primary text-white py-3"
                     >
                       <Send className="mr-2 h-4 w-4" />
                       Send Message
@@ -542,13 +542,13 @@ s">Paxillin</span>
          <div className="flex flex-col sm:flex-row gap-4 justify-center">
   <Link
     href="/features"
-    className="bg-pexilllin-primary text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:shadow-lg"
+    className="bg-paxillin-primary text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:shadow-lg"
   >
     Explore Features
   </Link>
   <Link
     href="/release"
-    className="border-2 border-pexilllin-primary text-pexilllin-primary hover:bg-pexilllin-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
+    className="border-2 border-paxillin-primary text-paxillin-primary hover:bg-paxillin-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
   >
     View Release Timeline
   </Link>

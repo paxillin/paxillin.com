@@ -1,74 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FeatureCard from "@/components/home/FeatureCard";
 import FAQSection from "@/components/home/FAQSection";
 import Testimonial from "@/components/home/Testimonial";
 import PageLayout from "@/components/layout/PageLayout";
-import { useSearchParams } from "next/navigation";
-
-const leftFeaturesArr = [
-  "Achievements",
-  "Publications",
-  "Milestones",
-  "Academics",
-  "Expertise",
-  "Passion",
-  "Talent",
-  "Skills",
-  "Work",
-  "Art",
-];
-
-const rightFeaturesArr = [
-  "Rejuvenation",
-  "Refreshment",
-  "Adventures",
-  "Vacations",
-  "Moments",
-  "Lifestyle",
-  "Dreams",
-  "Sport",
-  "Goal",
-  "Fun",
-];
+import { NetworkHeroGraphic } from "@/components/home/NetworkHeroGraphic";
+import {
+  MapPin,
+  UserCheck,
+  Calendar,
+  Building2,
+  UsersRound,
+  SquareLibrary,
+  LineChart,
+  Lock,
+  Network,
+  GitBranch,
+  BookOpen,
+} from "lucide-react";
 
 const Index = () => {
-  const [email, setEmail] = useState("");
-  const [selectedPhase, setSelectedPhase] = useState("alpha");
-  const { toast } = useToast();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const handleRegistration = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) {
-      toast({
-        title: "Email required",
-        description: "Please enter your email address to register.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    toast({
-      title: "Registration Successful!",
-      description: `Thank you for registering for ${selectedPhase} testing. We'll notify you when it's available.`,
-    });
-    setEmail("");
-  };
-
   useEffect(() => {
     setTimeout(() => {
       if (typeof window !== "undefined" && window.location.hash) {
@@ -93,213 +47,195 @@ const Index = () => {
 
   const features = [
     {
-      icon: "/icons/geoLocation.png",
-      title: "Geographic Toggling",
+      icon: MapPin,
+      title: "Location-aware discovery",
       description:
-        "Select location, speciality, or workplace and connect with professionals across the nation",
-      color: "text-blue-600",
+        "Filter by region, specialty, or workplace to find the right people across your network.",
     },
     {
-      icon: "/icons/members.png",
-      title: "Verified Directory",
+      icon: UserCheck,
+      title: "Verified directory",
       description:
-        "Discover and connect with friends, peers, or colleagues from a nationwide list",
-      color: "text-green-600",
+        "Find and connect with colleagues and peers you already trust — in one place.",
     },
     {
-      icon: "/icons/event.png",
-      title: "Events",
+      icon: Calendar,
+      title: "Professional events",
       description:
-        "Easily organise events, whether professional (conferences, CMEs, workshops, meetings, lectures, classes) or social (gatherings, celebrations, activities)",
-      color: "text-purple-600",
+        "From CMEs and meetings to small gatherings, organise what matters to your work.",
     },
     {
-      icon: "/icons/community.png",
-      title: "Create Community",
+      icon: Building2,
+      title: "Communities",
       description:
-        "Create a society, association, committee, or community to collaborate seamlessly",
-      color: "text-blue-600",
+        "Societies, associations, and groups — structured spaces for real collaboration.",
     },
     {
-      icon: "/icons/group.png",
-      title: "Create Group",
+      icon: UsersRound,
+      title: "Groups that follow you",
       description:
-        "Stay connected with your inbox groups, no matter where they are or what they specialise in",
-      color: "text-emerald-600",
+        "Keep specialty and interest groups in sync, wherever your career takes you.",
     },
     {
-      icon: "/icons/content.png",
-      title: "Relevant content & feed",
+      icon: SquareLibrary,
+      title: "Relevant updates",
       description:
-        "View doctors' updates, explore trends, and build your network",
-      color: "text-purple-600",
+        "Signal over noise: follow what’s useful for your practice and your network.",
     },
     {
-      icon: "/icons/analytics.png",
-      title: "Impact score analytics",
+      icon: LineChart,
+      title: "Meaningful engagement",
       description:
-        "Proprietary engagement metrics that measure meaningful professional & social interactions",
-      color: "text-purple-600",
+        "Clear metrics for professional interaction — not vanity scores.",
     },
     {
-      icon: "/icons/encrypted.png",
-      title: "Encrypted messages & calls",
+      icon: Lock,
+      title: "Private by design",
       description:
-        "End-to-end encryption ensures that only the sender and recipient can access messages and calls.",
-      color: "text-purple-600",
+        "Encrypted messaging and calls, with you in control of what you share.",
     },
   ];
 
-  const ourMission = [
+  const pillars = [
     {
-      icon: "/images/connection.svg",
+      icon: Network,
       title: "Connection",
-      description: "Near or Far : connect wherever you are",
+      description: "A calm space to find the right people — near or far.",
     },
     {
-      icon: "/images/integration.svg",
+      icon: GitBranch,
       title: "Integration",
-      description: "Share interests, expertise, & collaborate effortlessly",
+      description: "Interests, expertise, and work in one coherent profile.",
     },
     {
-      icon: "/images/movement.svg",
-      title: "Movement",
-      description: "Grow your medical network. Join the movement",
+      icon: BookOpen,
+      title: "Knowledge flow",
+      description: "Share and learn in focused threads, not endless feeds.",
     },
-  ];
+  ] as const;
 
   return (
     <PageLayout>
-      <div className="min-h-screen font-sans">
+      <div className="min-h-screen font-sans text-left">
         <Header />
-        <section className="relative flex items-center justify-center mt-0 sm:mt-16 pb-6 overflow-hidden bg-white">
-          <div className="relative z-10 w-full max-w-7xl text-center">
-            <div className="md:hidden space-y-4 my-[13rem] ">
-              <h2
-                className="text-6xl text-pexilllin-secondary font-montserrat"
-                style={{ fontWeight: 800 }}
-              >
-                Doctors <span className="px-6">United</span>
-              </h2>
-              <p className="px-3 pb-6 text-xl font-semibold text-pexilllin-primary">
-                A platform where healthcare <br />
-                professionals connect with each other, not with patients
-              </p>
-            </div>
 
-            <div className="flex flex-col md:flex-row justify-between items-center animate-fade-in-delay-2">
-              <div className="w-full md:w-1/2 space-y-6 text-center md:flex md:flex-col md:items-center md:justify-center">
-                <div className="hidden md:block space-y-6 md:max-w-xl animate-fade-in">
-                  <div className="space-y-4">
-                    <h2
-                      className="text-6xl text-pexilllin-secondary font-montserrat"
-                      style={{ fontWeight: 900 }}
-                    >
-                      Doctors United
-                    </h2>
-
-                    <p className="text-xl font-semibold text-pexilllin-primary leading-relaxed">
-                      A platform where healthcare professionals connect with each
-                      other, not with patients
-                    </p>
-                  </div>
-                </div>
+        <section className="relative overflow-hidden border-b border-paxillin-mist/30 bg-paxillin-parchment/50 pb-12 pt-4 sm:pt-8">
+          <div className="content-container">
+            <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-stretch lg:gap-12 lg:py-8">
+              <div className="flex w-full max-w-xl flex-1 flex-col justify-center text-center lg:text-left">
+                <p className="text-sm font-medium tracking-wide text-paxillin-ink/60">
+                  Professional healthcare network
+                </p>
+                <h1
+                  className="font-heading mt-3 text-4xl font-semibold leading-tight tracking-tight text-paxillin-secondary sm:text-5xl sm:leading-tight"
+                >
+                  Better care starts with better-connected professionals.
+                </h1>
+                <div className="mt-4 h-1 w-20 rounded-full bg-paxillin-accent" />
+                <p className="mt-6 text-lg leading-relaxed text-paxillin-ink/80">
+                  Connect with trusted healthcare professionals. Paxillin is a
+                  focused space for meaningful collaboration — not another social
+                  feed, and not a place to talk with patients.
+                </p>
               </div>
-
-              <div className="w-full relative md:w-1/2 text-center shadow-lg min-h-[350px] md:min-h-[500px] flex items-center justify-center overflow-hidden rounded-lg">
-                <img
-                  src="/images/Home.jpeg"
-                  alt="Dummy"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+              <div className="w-full flex-1">
+                <NetworkHeroGraphic />
               </div>
             </div>
           </div>
         </section>
 
-        <div className="px-4 grid gap-4">
-          <p className="text-center text-3xl font-bold text-pexilllin-secondary mt-16">
-            Our Product
-          </p>
-          <p className="text-center text-gray-500 text-lg mb-16">
-            A Secure Platform for Doctors and Healthcare Stakeholders to Connect,
-            Collaborate, and Grow — Built for Professionals, not Patients
-          </p>
-        </div>
+        <section className="content-container py-16 sm:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-heading text-3xl font-semibold text-paxillin-secondary sm:text-4xl">
+              The product
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-paxillin-ink/70">
+              Secure networking for doctors and healthcare stakeholders: clear,
+              calm, and built for professional trust — with room to breathe.
+            </p>
+          </div>
+        </section>
 
-        <section className="pt-2 max-w-4xl mx-auto px-4 ">
-          <div className="mx-auto">
-            <div className="grid gap-4 px-4">
-              <p className="text-center text-3xl font-bold text-pexilllin-secondary">
-                Our Features
-              </p>
-              <p className="text-center text-gray-500 text-lg">
-                Discover the Future of Healthcare Networking{" "}
+        <section className="content-container pb-16 sm:pb-20">
+          <div className="mb-10 text-center">
+            <h2 className="font-heading text-3xl font-semibold text-paxillin-secondary sm:text-4xl">
+              Capabilities
+            </h2>
+            <p className="mt-3 text-lg text-paxillin-ink/65">
+              Tools that support how you work together — not how algorithms
+              want you to scroll.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={feature.title}
+                {...feature}
+                delay={index * 0.08}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="our-mission"
+          className="border-t border-paxillin-mist/30 bg-white py-16 sm:py-20"
+        >
+          <div className="content-container">
+            <div className="mb-10 text-center">
+              <h2 className="font-heading text-3xl font-semibold text-paxillin-secondary sm:text-4xl">
+                How we show up
+              </h2>
+              <p className="mt-3 text-lg text-paxillin-ink/65">
+                Quiet, intentional, and easy to understand.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2  gap-10 mt-4 px-2">
-              {features.map((feature, index) => (
-                <FeatureCard
-                  key={feature.title}
-                  {...feature}
-                  delay={index * 0.15}
-                />
+            <div className="mx-auto flex max-w-2xl flex-col gap-4">
+              {pillars.map((item) => (
+                <div
+                  key={item.title}
+                  className="flex gap-4 rounded-2xl border border-paxillin-mist/50 bg-paxillin-parchment/40 px-4 py-4 sm:px-6"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-paxillin-mist/60 bg-white">
+                    <item.icon
+                      className="h-6 w-6 text-paxillin-sage"
+                      strokeWidth={1.75}
+                    />
+                  </div>
+                  <div className="min-w-0 text-left">
+                    <p className="font-heading text-lg font-semibold text-paxillin-secondary">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-paxillin-ink/70">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <div
-          id="our-mission"
-          className="grid max-w-4xl mx-auto gap-4 px-4 mt-16 "
-        >
-          <p className="text-center text-3xl font-bold text-pexilllin-secondary">
-            Our Goal
+        <section className="content-container py-16 sm:py-20">
+          <h2 className="text-center font-heading text-3xl font-semibold text-paxillin-secondary sm:text-4xl">
+            See Paxillin in context
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg text-center text-paxillin-ink/65">
+            Product preview (placeholder) — a calm surface for your future walkthrough.
           </p>
-          <p className="text-center text-gray-500 text-lg">
-            Uniting Healthcare Professionals into One Ecosystem
-          </p>
-
-          <div className="grid gap-4 grid-rows-3 justify-center">
-            {ourMission.map((mission, index) => (
-              <div
-                key={index}
-                className="bg-[rgb(226,248,255)] text-pexilllin-primary px-3 py-2 rounded-full flex items-center gap-3 w-full transition"
-              >
-                <div className="bg-white rounded-full p-2 w-max">
-                  <img
-                    src={mission.icon}
-                    alt={mission.title}
-                    className="w-5 h-5"
-                  />
-                </div>
-                <div className="flex flex-col gap-0.5 text-start">
-                  <p className="text-base font-semibold leading-tight">
-                    {mission.title}
-                  </p>
-                  <p className="text-xs leading-snug text-pexilllin-primary">
-                    {mission.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="mt-10 flex justify-center">
+            <div className="w-full max-w-md overflow-hidden rounded-card-lg border border-paxillin-mist/50 bg-white shadow-card">
+              <img
+                src="/images/fakeVideo.png"
+                alt="Product preview placeholder"
+                className="h-auto w-full"
+              />
+            </div>
           </div>
-        </div>
-
-        <div className="grid gap-4 px-4 mt-16 mb-8">
-          <p className="text-center text-3xl font-bold text-pexilllin-secondary">
-            See Paxillin in action
-          </p>
-
-          <div className="flex items-center justify-center">
-            <img
-              src="/images/fakeVideo.png"
-              alt="Paxillin in action preview"
-              className="w-full max-w-md rounded-xl"
-            />
-          </div>
-        </div>
+        </section>
 
         <Testimonial />
         <FAQSection />

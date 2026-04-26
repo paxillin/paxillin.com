@@ -51,31 +51,31 @@ const Header = () => {
     <>
       {/* Fixed Header */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b border-gray-200 font-sans"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-paxillin-mist/50 bg-white/90 backdrop-blur-md font-sans"
         ref={menuRef}
       >
-        <div className="container mx-auto px-4">
+        <div className="content-container">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center gap-2">
               <img
                 src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
                 alt="Paxillin"
-                className="w-14 h-14 object-contain"
+                className="w-12 h-12 object-contain"
               />
-              <span className="text-2xl sm:text-3xl font-bold text-pexilllin-primary">
+              <span className="font-heading text-2xl sm:text-3xl font-semibold text-paxillin-secondary tracking-tight">
                 Paxillin
               </span>
             </Link>
 
             {/* Desktop Navigation */}
             {!isMobile && (
-              <nav className="hidden md:flex items-center space-x-8">
+              <nav className="hidden md:flex items-center gap-8">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-gray-600 hover:text-pexilllin-primary font-medium transition-colors duration-200"
+                    className="text-paxillin-ink/70 hover:text-primary text-sm font-medium transition-colors duration-200"
                   >
                     {item.name}
                   </Link>
@@ -142,13 +142,13 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMobile && isMenuOpen && (
-            <div className="md:hidden py-1 border-t border-gray-200 bg-white/95 backdrop-blur-md">
-              <nav className="flex flex-col space-y-4">
+            <div className="md:hidden border-t border-paxillin-mist/50 bg-white/95 py-2 backdrop-blur-md">
+              <nav className="flex flex-col gap-1">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-gray-600 hover:text-pexilllin-primary font-medium transition-colors duration-200 px-4 py-1 "
+                    className="px-4 py-2 text-sm font-medium text-paxillin-ink/80 transition-colors hover:text-primary"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -161,10 +161,16 @@ const Header = () => {
       </header>
 
       {/* Scrollable Section Below Header */}
-      <div className="mt-16 flex justify-between items-center text-white bg-pexilllin-primary px-4 py-1 text-xs md:py-1 md:text-sm font-sans">
-        <p>CONNECTION</p>
-        <p>INTEGRATION</p>
-        <p>MOVEMENT</p>
+      <div className="mt-16 flex items-center justify-between border-b border-paxillin-mist/40 bg-paxillin-parchment/80 px-4 py-2 text-center text-xs font-medium tracking-wide text-paxillin-ink/80 md:py-2.5 md:text-sm">
+        <span className="flex-1">Connection</span>
+        <span className="text-paxillin-mist" aria-hidden>
+          ·
+        </span>
+        <span className="flex-1">Collaboration</span>
+        <span className="text-paxillin-mist" aria-hidden>
+          ·
+        </span>
+        <span className="flex-1">Clarity</span>
       </div>
     </>
   );

@@ -17,7 +17,7 @@ const Footer = () => {
     toast({
       title: "Subscribed!",
       description: "Thank you for subscribing to our newsletter.",
-      className: "text-pexilllin-primary",
+      className: "text-primary",
     });
     setEmail("");
   };
@@ -83,83 +83,64 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white pb-12 font-sans">
-      {/* Newsletter Section */}
-      <div className="hidden lg:flex">
-        <img
-          src="/images/doctorSeal.svg"
-          alt="Doctor Approved"
-          className="w-[150px] mt-6 absolute right-10 h-[200px] object-contain"
-        />
-      </div>
-      <div className="border-b border-gray-800">
-        <div className="container mx-auto px-4 py-12">
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-lg md:text-3xl font-bold mb-4">
-              Stay Connected with Healthcare Innovation
+    <footer className="bg-paxillin-ink text-white pb-10 font-sans">
+      <div className="border-b border-white/10">
+        <div className="content-container py-12">
+          <div className="mx-auto max-w-2xl text-center">
+            <h3 className="font-heading text-2xl font-semibold text-white md:text-3xl">
+              Product updates
             </h3>
-            <p className="text-sm md:text-base text-gray-400 mb-8">
-              Get the latest updates on Paxillin's development, healthcare
-              networking insights, and early access opportunities.
+            <p className="mb-8 mt-3 text-sm text-white/60 md:text-base">
+              Occasional notes on Paxillin’s development and early access.
             </p>
 
             <form
               onSubmit={handleNewsletterSignup}
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+              className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
             >
               <Input
                 type="email"
-                placeholder="Enter Your Email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                className="min-h-11 flex-1 border-white/20 bg-white/5 text-white placeholder:text-white/40"
                 required
               />
-              <Button type="submit" className="bg-pexilllin-primary text-white">
-                Join Us
+              <Button type="submit" className="shrink-0 sm:min-w-[8rem]">
+                Subscribe
               </Button>
             </form>
           </div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="container relative mx-auto px-4 py-12">
-        <div className="lg:hidden">
-          <img
-            src="/images/doctorSeal.svg"
-            alt="Doctor Approved"
-            className="w-[100px] mt-3 top-0 absolute right-5 h-[80px] object-contain"
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand Section */}
+      <div className="content-container relative py-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-2">
+            <div className="mb-3 flex items-center gap-2">
               <img
                 src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
                 alt="Paxillin"
-                className="w-10 h-10"
+                className="h-10 w-10"
               />
-              <span className="text-2xl font-bold text-pexilllin-primary">
+              <span className="font-heading text-2xl font-semibold text-white">
                 Paxillin
               </span>
             </div>
-            <h1 className="text-white text-left text-xl my-3 max-w-sm">
-              Empowering Doctor Connections
-            </h1>
-            <p className="text-gray-400 text-left mb-6 max-w-sm ">
-              The Healthcare Networking Platform — <br />
-              Secure, Collaborative, and Designed for Meaningful Engagement
+            <p className="mb-2 max-w-sm text-left text-lg text-white/90">
+              Better care starts with better-connected professionals.
+            </p>
+            <p className="mb-6 max-w-sm text-left text-sm text-white/55">
+              A focused space for healthcare professionals to collaborate — not
+              a social feed.
             </p>
 
-            {/* Social Links */}
-            <div className="flex space-x-4">
+            <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-lg hover:bg-pexilllin-primary transition-all duration-300 transform hover:scale-110"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-colors hover:border-white/30 hover:bg-white/10"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -168,18 +149,17 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Footer Links */}
           {footerLinks.map((section) => (
             <div key={section.title} className="text-left">
-              <h4 className="text-lg font-semibold mb-4 text-pexilllin-primary">
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-paxillin-mist">
                 {section.title}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                      className="text-sm text-white/60 transition-colors hover:text-white"
                     >
                       {link.name}
                     </Link>
@@ -191,16 +171,12 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © 2025 Paxillin. All Rights Reserved. Compliant Enterprise-Grade
-              Security. Compliant Healthcare Networking Platform.
-            </p>
-            <span className="text-pexilllin-primary">🔒 Secure Platform</span>
-          </div>
+      <div className="border-t border-white/10">
+        <div className="content-container flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
+          <p className="text-center text-sm text-white/50 md:text-left">
+            © 2026 Paxillin. All rights reserved.
+          </p>
+          <span className="text-sm text-paxillin-mist">Secure, privacy-first</span>
         </div>
       </div>
     </footer>

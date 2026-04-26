@@ -73,7 +73,7 @@ const FeedbackForm = () => {
     <div className="py-4 max-w-6xl px-6 md:p-10 bg-white flex flex-col md:flex-row items-center justify-center mx-auto gap-10">
       <div className="w-full md:w-[50%]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="text-2xl text-left md:text-center font-bold mb-6 text-pexilllin-secondary">
+          <h2 className="text-2xl text-left md:text-center font-bold mb-6 text-paxillin-secondary">
             Feedback Form
           </h2>
 
@@ -147,7 +147,7 @@ const FeedbackForm = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-pexilllin-primary text-white p-3 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-paxillin-primary text-white p-3 rounded disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Submitting..." : "Submit Feedback"}
           </button>

@@ -56,26 +56,26 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 px-4 ">
-      <div className="mx-auto max-w-4xl px-4">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            Frequently Asked Questions
+    <section id="faq" className="content-container border-t border-paxillin-mist/30 py-20">
+      <div className="mx-auto max-w-3xl">
+        <div className="mb-10 text-center">
+          <h2 className="mb-2 font-heading text-3xl font-semibold text-paxillin-secondary md:text-4xl">
+            Questions
           </h2>
-          <p className="text-lg text-gray-600">
-            Everything you need to know about Paxillin
+          <p className="text-lg text-paxillin-ink/70">
+            Straight answers — no hype.
           </p>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
-            <Card key={index} className="border border-gray-400 transition-shadow duration-300 rounded-lg">
+            <Card key={index} className="border-paxillin-mist/50 transition-shadow duration-300">
               <CardContent className="p-0">
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+                  className="flex w-full items-center justify-between p-6 text-left transition-colors duration-200 hover:bg-paxillin-parchment/40"
                 >
-                <h3 className="text-base md:text-lg font-medium text-gray-800 leading-snug pr-8">
+                <h3 className="pr-8 text-base font-medium leading-snug text-paxillin-ink md:text-lg">
 
 
                     {faq.question}
@@ -89,7 +89,7 @@ const FAQSection = () => {
                 
                 {openFAQ === index && (
                   <div className="px-6 pb-6">
-                    <p className="text-gray-600 leading-relaxed text-left">
+                    <p className="text-left leading-relaxed text-paxillin-ink/75">
                       {faq.answer}
                     </p>
                   </div>
@@ -105,9 +105,9 @@ const FAQSection = () => {
           </p>
           <a 
             href="mailto:support@Paxillin.com" 
-            className="text-pexilllin-primary font-semibold"
+            className="font-medium text-paxillin-teal underline-offset-2 hover:underline"
           >
-           Contact our support team.
+           Contact our team.
           </a>
         </div>
       </div>

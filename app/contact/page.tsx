@@ -137,12 +137,12 @@ const Contact = () => {
               >
                 <CardContent className="p-0 text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <info.icon className="h-8 w-8 text-pexilllin-primary" />
+                    <info.icon className="h-8 w-8 text-paxillin-primary" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {info.title}
                   </h3>
-                  <p className="text-lg text-pexilllin-primary font-semibold mb-2">
+                  <p className="text-lg text-paxillin-primary font-semibold mb-2">
                     {info.details}
                   </p>
                   <p className="text-gray-600 text-base">{info.description}</p>

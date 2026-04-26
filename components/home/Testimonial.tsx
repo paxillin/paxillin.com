@@ -78,24 +78,24 @@ const Testimonial: React.FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 pt-8">
-      <h2 className="text-3xl font-bold text-center mb-8 text-pexilllin-secondary">
-        Testimonials
+    <div className="mx-auto max-w-2xl px-4 pb-8 pt-12">
+      <h2 className="mb-8 text-center font-heading text-3xl font-semibold text-paxillin-secondary sm:text-4xl">
+        What peers say
       </h2>
 
       <div
-        className="relative h-full"
+        className="relative h-full min-h-[16rem]"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`transition-opacity duration-700 ${
+            className={`flex h-full min-h-[16rem] flex-col items-center p-6 text-center transition-opacity duration-700 ${
               index === currentIndex
                 ? "opacity-100"
-                : "opacity-0 absolute inset-0"
-            } flex flex-col items-center text-center bg-white p-6 h-full rounded-2xl shadow-lg border border-gray-400`}
+                : "absolute inset-0 opacity-0"
+            } rounded-card-lg border border-paxillin-mist/50 bg-white shadow-card`}
           >
             <img
               src={testimonial.image}
@@ -119,9 +119,13 @@ const Testimonial: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-gray-800" : "bg-gray-400"
+            className={`h-2.5 w-2.5 rounded-full transition-colors ${
+              index === currentIndex
+                ? "bg-primary"
+                : "bg-paxillin-mist"
             }`}
+            aria-label={`Show testimonial ${index + 1}`}
+            type="button"
           />
         ))}
       </div>

@@ -3,8 +3,9 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Paxillin - Healthcare Networking Platform",
-  description: "A platform where healthcare professionals connect with each other, not with patients",
+  title: "Paxillin — Healthcare professional network",
+  description:
+    "Connect with trusted healthcare professionals. A focused space for meaningful collaboration — not a social feed.",
 };
 
 export default function RootLayout({
