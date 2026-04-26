@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, Share2, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { PaxillinLogoMark } from "@/components/brand/PaxillinLogoMark";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,11 +59,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
-              <img
-                src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
-                alt="Paxillin"
-                className="w-12 h-12 object-contain"
-              />
+              <PaxillinLogoMark className="h-12 w-12 object-contain" />
               <span className="font-heading text-2xl sm:text-3xl font-semibold text-paxillin-secondary tracking-tight">
                 Paxillin
               </span>

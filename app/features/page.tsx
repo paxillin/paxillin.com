@@ -1,338 +1,358 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle } from "lucide-react";
+import {
+  BadgeCheck,
+  BarChart3,
+  Bell,
+  Building2,
+  Calendar,
+  Compass,
+  FileCheck,
+  Globe2,
+  Heart,
+  LineChart,
+  Link2,
+  Lock,
+  MapPin,
+  Megaphone,
+  MessageCircle,
+  MessagesSquare,
+  Newspaper,
+  Phone,
+  Rss,
+  Share2,
+  Shield,
+  Sparkles,
+  UserSearch,
+  Users,
+  UsersRound,
+  Video,
+} from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageLayout from "@/components/layout/PageLayout";
+import {
+  FeatureDetailCard,
+  type FeatureDefinition,
+} from "@/components/features/FeatureDetailCard";
+import {
+  FeaturePhoneMockup,
+  FeaturePhoneShell,
+  FeaturePhoneScreenContent,
+} from "@/components/features/FeaturePhoneMockup";
+
+const FEATURES: FeatureDefinition[] = [
+  {
+    icon: "/icons/geoLocation.png",
+    title: "Geographic Toggling",
+    headline: "One toggle. Local focus or national reach.",
+    subtext:
+      "Move between regional discovery and nationwide networking without switching apps—built for how clinicians actually work.",
+    highlights: [
+      { Icon: MapPin, text: "Switch between local and national modes instantly" },
+      { Icon: Globe2, text: "Discover peers across regions and states" },
+      { Icon: Compass, text: "Grow your network beyond your immediate geography" },
+      { Icon: Users, text: "Surface events and initiatives that match your scope" },
+    ],
+    mockupFeature: "Interactive location-switch interface",
+  },
+  {
+    icon: "/icons/members.png",
+    title: "Verified Directory",
+    headline: "Find the right colleague, faster.",
+    subtext:
+      "A nationwide directory of verified healthcare professionals—searchable, filterable, and designed for trusted reconnections.",
+    highlights: [
+      { Icon: UserSearch, text: "Search verified doctors and clinicians in one place" },
+      { Icon: BadgeCheck, text: "Reconnect with former colleagues with confidence" },
+      { Icon: Building2, text: "Filter by specialty, location, or institution" },
+      { Icon: Users, text: "Strengthen professional and social ties over time" },
+    ],
+    mockupFeature: "Searchable doctor directory UI",
+  },
+  {
+    icon: "/icons/event.png",
+    title: "Events",
+    headline: "Host CMEs, workshops, or gatherings—without the friction.",
+    subtext:
+      "Create professional or social events, set time and place, share a link, and invite the right people in a few minutes.",
+    highlights: [
+      { Icon: Calendar, text: "Simple creation and sharing for any event format" },
+      { Icon: Video, text: "Support virtual, hybrid, or in-person sessions" },
+      { Icon: Link2, text: "Share invites with a single secure link" },
+      { Icon: Megaphone, text: "Target promotion by specialty or geography" },
+    ],
+    mockupFeature: "Event creation flow and invite system",
+  },
+  {
+    icon: "/icons/community.png",
+    title: "Create Community",
+    headline: "Spaces for shared interests—not generic feeds.",
+    subtext:
+      "Launch professional or social communities at city, state, or national scale, then invite others with a clear, calm onboarding path.",
+    highlights: [
+      { Icon: UsersRound, text: "Spin up a community in minutes" },
+      { Icon: MapPin, text: "Control visibility: local, regional, or nationwide" },
+      { Icon: Share2, text: "Public or private links for trusted growth" },
+      { Icon: MessageCircle, text: "Keep collaboration focused on shared goals" },
+    ],
+    mockupFeature: "Community setup interface",
+  },
+  {
+    icon: "/icons/group.png",
+    title: "Create Group",
+    headline: "Small groups. One thread. Less noise.",
+    subtext:
+      "Give peer circles a dedicated home for coordination—across sites, shifts, and subspecialties—without splitting across apps.",
+    highlights: [
+      { Icon: MessagesSquare, text: "Create groups for cases, projects, or teams" },
+      { Icon: Bell, text: "Central notifications for everyone who matters" },
+      { Icon: Users, text: "Coordinate topics without losing context" },
+      { Icon: Rss, text: "Persistent chat and activity for ongoing work" },
+    ],
+    mockupFeature: "Group chat and dashboard UI",
+  },
+  {
+    icon: "/icons/content.png",
+    title: "Relevant Content & Feed",
+    headline: "Signal over scroll.",
+    subtext:
+      "Follow what peers and institutions publish, spot trends that matter to your practice, and engage without drowning in noise.",
+    highlights: [
+      { Icon: Newspaper, text: "Personalized updates aligned to your interests" },
+      { Icon: Rss, text: "Follow people, places, and communities you trust" },
+      { Icon: Sparkles, text: "Stay current on advances relevant to your field" },
+      { Icon: Heart, text: "Thoughtful reactions and comments—not vanity metrics" },
+    ],
+    mockupFeature: "Curated content feed UI",
+  },
+  {
+    icon: "/icons/analytics.png",
+    title: "Impact Score Analytics",
+    headline: "Measure meaningful engagement, not vanity.",
+    subtext:
+      "Proprietary metrics surface the quality and reach of your professional presence—so you can grow your network with intention.",
+    highlights: [
+      { Icon: LineChart, text: "See reach and depth of your activity over time" },
+      { Icon: BarChart3, text: "Compare influence across specialties and regions" },
+      { Icon: Sparkles, text: "Improve visibility through consistent, valuable actions" },
+      { Icon: Users, text: "Understand how your network expands and compounds" },
+    ],
+    mockupFeature: "Analytics dashboard visualization",
+  },
+  {
+    icon: "/icons/encrypted.png",
+    title: "Encrypted Messages & Calls",
+    headline: "Private by design—for sensitive clinical conversations.",
+    subtext:
+      "End-to-end encryption helps ensure only intended participants can access messages and calls, with a calm interface that feels clinical, not consumer-chatty.",
+    highlights: [
+      { Icon: Shield, text: "Confidential channels for peer-to-peer discussion" },
+      { Icon: Lock, text: "Encrypted messaging and voice with modern protocols" },
+      { Icon: FileCheck, text: "Built with healthcare-grade expectations in mind" },
+      { Icon: Phone, text: "Voice that stays between you and your colleague" },
+    ],
+    mockupFeature: "Encrypted chat and call interface",
+    visualAccent: "security",
+  },
+];
+
+const IO_THRESHOLDS = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] as const;
+const IO_ROOT_MARGIN = "-35% 0px -35% 0px";
 
 const Features = () => {
-  const features = [
-    {
-      icon: "/icons/geoLocation.png",
-      title: "Geographic Toggling",
-      problem:
-        "Healthcare professionals often face limitations in discovering and connecting with peers beyond their immediate location.",
-      description:
-        "Switch locations and connect locally or nationally with a single toggle - exclusive to Paxillin.",
-      benefits: [
-        "Effortlessly toggle between local and national networking modes",
-        "Discover professionals in other regions and states",
-        "Expand your network beyond geographic boundaries",
-        "Promote or participate in regional events and initiatives",
-      ],
-      mockupFeature: "Interactive location-switch interface",
-      color: "text-blue-600",
-    },
-    {
-      icon: "/icons/members.png",
-      title: "Verified Directory",
-      problem:
-        "Finding and connecting with known colleagues and peers across institutions is often cumbersome.",
-      description:
-        "Discover and connect with friends, peers, and colleagues through a nationwide directory.",
-      benefits: [
-        "Searchable directory of verified doctors and healthcare professionals",
-        "Easily reconnect with former colleagues",
-        "Build a stronger and more connected professional and social network",
-        "Filter by specialty, location, or institution",
-      ],
-      mockupFeature: "Searchable doctor directory UI",
-      color: "text-green-600",
-    },
-    {
-      icon: "/icons/event.png",
-      title: "Events",
-      problem:
-        "Organizing and promoting professional  or social  events often lacks a streamlined, integrated system.",
-      description:
-        "Easily create professional (conferences, CMEs, workshops, meetings, lectures, classes) or social (gatherings, celebrations, activities) events - set the time and location, share a link, and invite others to join.",
-      benefits: [
-        "Simple event creation and sharing",
-        "Host virtual or in-person events",
-        "Track engagement",
-        "Promote events within specific specialties or geographic regions",
-      ],
-      mockupFeature: "Event creation flow and invite system",
-      color: "text-purple-600",
-    },
-    {
-      icon: "/icons/community.png",
-      title: "Create Community",
-      problem:
-        "There is a lack of a unified platform for dedicated, interest-based communities where healthcare professionals can collaborate and network effectively.",
-      description:
-        "Create a professional or social community by city, state, or nationwide  and share a link for others to join and collaborate.",
-      benefits: [
-        "Launch your own community in minutes",
-        "Customize visibility by region (local, regional, or national)",
-        "Collaborate on shared goals and interests",
-        "Invite members via public or private links",
-      ],
-      mockupFeature: "Community setup interface",
-      color: "text-blue-600",
-    },
-    {
-      icon: "/icons/group.png",
-      title: "Create Group",
-      problem:
-        "Maintaining communication within smaller peer groups is often fragmented across multiple platforms.",
-      description:
-        "Stay connected and collaborate effortlessly, no matter where members are located or what they specialise in.",
-      benefits: [
-        "Easily create groups of your choice",
-        "Centralized communication for all group members",
-        "Coordinate on specific topics, cases, or initiatives",
-        "Persistent chat and activity feed for ongoing engagement",
-      ],
-      mockupFeature: "Group chat and dashboard UI",
-      color: "text-emerald-600",
-    },
-    {
-      icon: "/icons/content.png",
-      title: "Relevant Content & Feed",
-      problem:
-        "Healthcare professionals often miss important updates and trends due to information overload.",
-      description:
-        "Stay updated with doctors' posts, explore key trends, and expand your network through a curated content feed.",
-      benefits: [
-        "Personalized news and content tailored to your interests",
-        "Follow updates from peers, institutions, and communities",
-        "Stay informed about the latest medical advancements",
-        "Engage with posts through comments and reactions",
-      ],
-      mockupFeature: "Curated content feed UI",
-      color: "text-purple-600",
-    },
-    {
-      icon: "/icons/analytics.png",
-      title: "Impact Score Analytics",
-      problem:
-        "There's currently no effective way to measure the quality of professional and social interactions within healthcare networks.",
-      description:
-        "Paxillin's proprietary engagement metrics quantify meaningful professional and social interactions across the platform.",
-      benefits: [
-        "Track the quality and reach of your engagement",
-        "Visualize influence across specialties and regions",
-        "Boost profile visibility through consistent activity",
-        "Understand network growth over time",
-      ],
-      mockupFeature: "Analytics dashboard visualization",
-      color: "text-purple-600",
-    },
-    {
-      icon: "/icons/encrypted.png",
-      title: "Encrypted Messages & Calls",
-      problem:
-        "Privacy concerns often hinder open and secure communication among healthcare professionals.",
-      description:
-        "End-to-end encryption ensures that only the sender and recipient have access to messages and calls.",
-      benefits: [
-        "Confidential and private communication",
-        "Secure peer-to-peer calls and messaging",
-        "Compliance with healthcare data protection standards",
-        "Peace of mind for sensitive discussions",
-      ],
-      mockupFeature: "Encrypted chat and call interface",
-      color: "text-purple-600",
-    },
-  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const ratiosRef = useRef<Map<number, number>>(new Map());
+
+  const setCardRef = useCallback((index: number, el: HTMLDivElement | null) => {
+    cardRefs.current[index] = el;
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const lgMq = window.matchMedia("(min-width: 1024px)");
+    let observer: IntersectionObserver | null = null;
+
+    const pickActiveFromRatios = () => {
+      let bestIdx = 0;
+      let bestRatio = -1;
+      ratiosRef.current.forEach((ratio, idx) => {
+        if (ratio > bestRatio) {
+          bestRatio = ratio;
+          bestIdx = idx;
+        }
+      });
+      if (bestRatio < 0) return;
+      setActiveIndex((prev) => (prev !== bestIdx ? bestIdx : prev));
+    };
+
+    const attach = () => {
+      observer?.disconnect();
+      observer = null;
+      ratiosRef.current.clear();
+
+      if (!lgMq.matches) return;
+
+      const elements = cardRefs.current.filter(
+        (n): n is HTMLDivElement => n != null
+      );
+      if (elements.length === 0) return;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const target = entry.target;
+            if (!(target instanceof HTMLElement)) continue;
+            const idx = Number.parseInt(target.dataset.featureIndex ?? "", 10);
+            if (!Number.isFinite(idx)) continue;
+            ratiosRef.current.set(idx, entry.intersectionRatio);
+          }
+          pickActiveFromRatios();
+        },
+        {
+          root: null,
+          rootMargin: IO_ROOT_MARGIN,
+          threshold: [...IO_THRESHOLDS],
+        }
+      );
+
+      const obs = observer;
+      elements.forEach((el, i) => {
+        el.dataset.featureIndex = String(i);
+        obs.observe(el);
+      });
+    };
+
+    const scheduleAttach = () => {
+      queueMicrotask(() => {
+        requestAnimationFrame(attach);
+      });
+    };
+
+    const onLgChange = () => {
+      scheduleAttach();
+      if (!lgMq.matches) {
+        setActiveIndex(0);
+      }
+    };
+
+    scheduleAttach();
+    lgMq.addEventListener("change", onLgChange);
+    window.addEventListener("resize", scheduleAttach);
+
+    return () => {
+      lgMq.removeEventListener("change", onLgChange);
+      window.removeEventListener("resize", scheduleAttach);
+      observer?.disconnect();
+    };
+  }, []);
+
+  const active = FEATURES[activeIndex] ?? FEATURES[0];
+
+  const phoneScreen = (
+    <div className="flex min-h-0 flex-1 flex-col">
+      {reduceMotion ? (
+        <FeaturePhoneScreenContent
+          key={active.title}
+          icon={active.icon}
+          title={active.title}
+          mockupFeature={active.mockupFeature}
+        />
+      ) : (
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={active.title}
+            className="flex min-h-0 flex-1 flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <FeaturePhoneScreenContent
+              icon={active.icon}
+              title={active.title}
+              mockupFeature={active.mockupFeature}
+            />
+          </motion.div>
+        </AnimatePresence>
+      )}
+    </div>
+  );
 
   return (
     <PageLayout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans">
+      <div className="min-h-screen bg-white font-sans antialiased">
         <Header />
 
-        {/* Hero Section */}
-        <section className="pt-16 pb-16 px-0.4">
+        <section className="px-0.4 pb-16 pt-16">
           <div className="container mx-auto text-center">
             <Badge
               variant="secondary"
-              className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-paxillin-primary border-0"
+              className="mb-6 border border-paxillin-mist/50 bg-white/90 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-paxillin-ink/55"
             >
-              Complete Feature Overview
+              Complete feature overview
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8">
-              Powerful Features for
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0f2c4d] via-[#165176] to-[#3CAFE6]">
-                Healthcare Professionals
+            <h1 className="mb-6 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-paxillin-secondary md:mb-8 md:text-6xl md:leading-[1.08]">
+              Powerful features for
+              <span className="mt-1 block text-paxillin-secondary md:mt-2">
+                healthcare professionals
               </span>
             </h1>
-            <p className="text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto mb-6 leading-relaxed">
-              Paxillin delivers powerful features tailored for healthcare
-              professionals, making it easier to connect, collaborate, and share
-              across the healthcare ecosystem.
+            <p className="mx-auto mb-6 max-w-2xl text-base font-normal leading-relaxed text-paxillin-ink/65 md:text-lg">
+              Paxillin delivers tools tailored for healthcare professionals to
+              connect, collaborate, and share across the ecosystem—clearly and
+              calmly.
             </p>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="pb-16 px-4">
+        <section className="px-4 pb-16">
           <div className="container mx-auto">
-            <div className="space-y-24">
-              {features.map((feature, index) => (
+            {/* Desktop: sticky phone + scrolling cards */}
+            <div className="hidden lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
+              <div className="lg:sticky lg:top-24 lg:self-start">
+                <FeaturePhoneShell>{phoneScreen}</FeaturePhoneShell>
+              </div>
+              <div className="space-y-24">
+                {FEATURES.map((feature, index) => (
+                  <div
+                    key={feature.title}
+                    ref={(el) => setCardRef(index, el)}
+                    className="scroll-mt-28"
+                  >
+                    <FeatureDetailCard feature={feature} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile: phone + card per feature */}
+            <div className="space-y-24 lg:hidden">
+              {FEATURES.map((feature, index) => (
                 <div
                   key={feature.title}
-                  className={`flex flex-col text-left lg:flex-row items-center gap-12 ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  } animate-fade-in`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
+                  className="animate-fade-in flex flex-col items-center gap-12 text-left"
+                  style={{ animationDelay: `${index * 0.15}s` }}
                 >
-                  {/* Mobile Mockup */}
-                  <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="relative">
-                      {/* Phone Frame */}
-                      <div className="w-80 h-[640px] bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] p-2 shadow-2xl">
-                        <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                          {/* Phone Screen Content */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 flex flex-col">
-                            {/* Status Bar */}
-                            <div className="flex justify-between items-center text-xs text-gray-600 mb-4">
-                              <span>9:41</span>
-                              <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
-                                <span>100%</span>
-                              </div>
-                            </div>
-
-                            {/* App Header */}
-                            <div className="flex items-center gap-3 mb-6">
-                              <img
-                                src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
-                                alt="paxillin"
-                                className="w-8 h-8"
-                              />
-                              <span className="text-lg font-bold text-paxillin-primary">
-                                Paxillin
-                              </span>
-                            </div>
-
-                            {/* Feature Icon */}
-                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-emerald-100 flex items-center justify-center mb-4 mx-auto">
-                              <img
-                                src={feature.icon}
-                                alt={feature.title}
-                                className="h-8 w-8"
-                              />
-                            </div>
-
-                            {/* Feature Title in Mockup */}
-                            <h3 className="text-center text-lg font-bold text-gray-900 mb-2">
-                              {feature.title}
-                            </h3>
-
-                            {/* Mockup Feature Description */}
-                            <p className="text-center text-sm text-gray-600 mb-4">
-                              {feature.mockupFeature}
-                            </p>
-
-                            {/* Mock Interface Elements */}
-                            <div className="flex-1 space-y-3">
-                              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <img
-                                      src={feature.icon}
-                                      alt={feature.title}
-                                      className="h-5 w-5 object-contain"
-                                    />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="h-3 bg-gray-200 rounded mb-2"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-2/3"></div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                                    <CheckCircle className="h-5 w-5 text-emerald-600" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="h-3 bg-gray-200 rounded mb-2"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-3/4"></div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Bottom Navigation */}
-                            <div className="flex justify-around pt-4 border-t border-gray-200">
-                              <div className="w-6 h-6 bg-blue-200 rounded"></div>
-                              <div className="w-6 h-6 bg-gray-200 rounded"></div>
-                              <div className="w-6 h-6 bg-gray-200 rounded"></div>
-                              <div className="w-6 h-6 bg-gray-200 rounded"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Feature Details */}
-                  <div className="w-full lg:w-1/2">
-                    <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl">
-                      <CardContent className="p-8">
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="min-w-[64px] min-h-[64px] aspect-square rounded-2xl bg-gradient-to-br from-blue-100 to-emerald-100 flex items-center justify-center shrink-0">
-                            <img
-                              src={feature.icon}
-                              alt={feature.title}
-                              className="w-8 h-8 object-contain"
-                            />
-                          </div>
-
-                          <div>
-                            <h3 className="text-2xl font-bold text-gray-900">
-                              {feature.title}
-                            </h3>
-                          </div>
-                        </div>
-
-                        {/* Problem Statement */}
-                        <div className="mb-6">
-                          <h4 className="font-semibold text-red-600 mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            Problem This Solves
-                          </h4>
-                          <p className="text-gray-700 leading-relaxed bg-red-50 p-4 rounded-lg border-l-4 border-red-200">
-                            {feature.problem}
-                          </p>
-                        </div>
-
-                        {/* Solution Description */}
-                        <div className="mb-6">
-                          <h4 className="font-semibold text-paxillin-primary mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-paxillin-primary rounded-full"></div>
-                            Our Solution
-                          </h4>
-                          <p className="text-gray-700 leading-relaxed">
-                            {feature.description}
-                          </p>
-                        </div>
-
-                        {/* Key Benefits */}
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-emerald-600 mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                            Key Benefits
-                          </h4>
-                          <ul className="space-y-3">
-                            {feature.benefits.map((benefit, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-start text-sm text-gray-700"
-                              >
-                                <CheckCircle className="w-5 h-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-                                <span>{benefit}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <FeaturePhoneMockup
+                    icon={feature.icon}
+                    title={feature.title}
+                    mockupFeature={feature.mockupFeature}
+                  />
+                  <div className="w-full">
+                    <FeatureDetailCard feature={feature} />
                   </div>
                 </div>
               ))}
@@ -340,13 +360,12 @@ const Features = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 px-4 bg-paxillin-primary">
+        <section className="bg-paxillin-primary px-4 py-24">
           <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">
               Ready to Transform Your Medical Network?
             </h2>
-            <p className="md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="mx-auto mb-8 max-w-3xl text-blue-100 md:text-xl">
               Join thousands of healthcare professionals and organization who are
               transforming healthcare networking with Paxillin.
             </p>

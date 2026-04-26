@@ -4,7 +4,7 @@
 export function NetworkHeroGraphic() {
   return (
     <div
-      className="relative flex w-full min-h-[280px] items-center justify-center md:min-h-[420px]"
+      className="relative flex w-full min-h-[280px] select-none items-center justify-center md:min-h-[420px]"
       aria-hidden
     >
       <svg

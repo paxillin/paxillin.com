@@ -240,6 +240,14 @@ export default {
             "border-color": "currentColor",
           },
         },
+        "paxillin-logo-ramp": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "paxillin-logo-steady": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -259,6 +267,8 @@ export default {
         "fade-in-delay-1": "fade-in 0.8s ease-out 0.3s both",
         "fade-in-delay-2": "fade-in 0.8s ease-out 0.6s both",
         "fade-in-delay-3": "fade-in 0.8s ease-out 0.9s both",
+        "paxillin-logo-ramp": "paxillin-logo-ramp 2.4s ease-in forwards",
+        "paxillin-logo-steady": "paxillin-logo-steady 2s linear infinite",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

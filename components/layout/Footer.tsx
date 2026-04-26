@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { PaxillinLogoMark } from "@/components/brand/PaxillinLogoMark";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -118,11 +119,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="mb-3 flex items-center gap-2">
-              <img
-                src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
-                alt="Paxillin"
-                className="h-10 w-10"
-              />
+              <PaxillinLogoMark className="h-10 w-10" />
               <span className="font-heading text-2xl font-semibold text-white">
                 Paxillin
               </span>

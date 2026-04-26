@@ -85,14 +85,13 @@ const ImagesAnimation = () => {
   const positions = getUniquePositions(Images.length);
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative h-full w-full overflow-hidden select-none">
       {Images.map((Fish, idx) => {
         const { top, left } = positions[idx];
         const delay = Math.random() * 2;
         const duration = 10 + Math.random() * 20;
         const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
         const xShift = Math.random() > 0.5 ? 5 : -5; // move left or right
-        console.log(xShift);
 
         return (
           <motion.img
