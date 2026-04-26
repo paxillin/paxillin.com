@@ -10,10 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/92",
+        /** Editorial CTA — charcoal surface, soft corners (not pill), pairs with → icon */
+        cta:
+          "border border-black/10 bg-[#3c3c3c] font-montserrat font-medium tracking-tight text-white shadow-sm transition-colors duration-200 hover:bg-[#484848] active:bg-[#353535] focus-visible:ring-2 focus-visible:ring-paxillin-ink/30 focus-visible:ring-offset-2 disabled:hover:bg-[#3c3c3c] [&_svg]:size-[1.05rem] [&_svg]:shrink-0",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-paxillin-mist/80 bg-background text-primary hover:border-primary/40 hover:bg-muted/50",
+          "border border-paxillin-mist/80 bg-white text-paxillin-ink hover:border-paxillin-mist hover:bg-paxillin-mist/15",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/85",
         ghost: "hover:bg-accent hover:text-accent-foreground",

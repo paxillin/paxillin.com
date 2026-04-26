@@ -116,7 +116,7 @@ const Index = () => {
 
   return (
     <PageLayout>
-      <div className="min-h-screen font-sans text-left">
+      <div className="min-h-screen bg-white font-sans antialiased text-left">
         <Header />
 
         <section className="relative overflow-hidden border-b border-paxillin-mist/30 bg-paxillin-parchment/50 pb-12 pt-4 sm:pt-8">
@@ -181,7 +181,7 @@ const Index = () => {
 
         <section
           id="our-mission"
-          className="border-t border-paxillin-mist/30 bg-white py-16 sm:py-20"
+          className="border-t border-paxillin-mist/30 bg-paxillin-parchment py-16 sm:py-20"
         >
           <div className="content-container">
             <div className="mb-10 text-center">
@@ -197,7 +197,7 @@ const Index = () => {
               {pillars.map((item) => (
                 <div
                   key={item.title}
-                  className="flex gap-4 rounded-2xl border border-paxillin-mist/50 bg-paxillin-parchment/40 px-4 py-4 sm:px-6"
+                  className="flex gap-4 rounded-2xl border border-paxillin-mist/50 bg-white/90 px-4 py-4 shadow-sm sm:px-6"
                 >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-paxillin-mist/60 bg-white">
                     <item.icon

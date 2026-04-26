@@ -296,7 +296,7 @@ const Features = () => {
       <div className="min-h-screen bg-white font-sans antialiased">
         <Header />
 
-        <section className="px-0.4 pb-16 pt-16">
+        <section className="px-4 pb-16 pt-16">
           <div className="container mx-auto text-center">
             <Badge
               variant="secondary"
@@ -360,12 +360,12 @@ const Features = () => {
           </div>
         </section>
 
-        <section className="bg-paxillin-primary px-4 py-24">
+        <section className="bg-paxillin-secondary px-4 py-24">
           <div className="container mx-auto text-center">
             <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">
               Ready to Transform Your Medical Network?
             </h2>
-            <p className="mx-auto mb-8 max-w-3xl text-blue-100 md:text-xl">
+            <p className="mx-auto mb-8 max-w-3xl text-white/75 md:text-xl">
               Join thousands of healthcare professionals and organization who are
               transforming healthcare networking with Paxillin.
             </p>

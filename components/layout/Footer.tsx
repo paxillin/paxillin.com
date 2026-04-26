@@ -18,7 +18,7 @@ const Footer = () => {
     toast({
       title: "Subscribed!",
       description: "Thank you for subscribing to our newsletter.",
-      className: "text-primary",
+      className: "text-paxillin-secondary",
     });
     setEmail("");
   };
@@ -84,14 +84,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-paxillin-ink text-white pb-10 font-sans">
-      <div className="border-b border-white/10">
+    <footer className="border-t border-paxillin-mist/50 bg-paxillin-parchment pb-10 font-montserrat text-paxillin-secondary">
+      <div className="border-b border-paxillin-secondary/20 bg-paxillin-secondary">
         <div className="content-container py-12">
           <div className="mx-auto max-w-2xl text-center">
             <h3 className="font-heading text-2xl font-semibold text-white md:text-3xl">
               Product updates
             </h3>
-            <p className="mb-8 mt-3 text-sm text-white/60 md:text-base">
+            <p className="mb-8 mt-3 text-sm text-white/75 md:text-base">
               Occasional notes on Paxillin’s development and early access.
             </p>
 
@@ -101,13 +101,18 @@ const Footer = () => {
             >
               <Input
                 type="email"
+                variant="marketing"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="min-h-11 flex-1 border-white/20 bg-white/5 text-white placeholder:text-white/40"
+                className="min-h-11 flex-1"
                 required
               />
-              <Button type="submit" className="shrink-0 sm:min-w-[8rem]">
+              <Button
+                type="submit"
+                variant="outline"
+                className="shrink-0 border-white/45 bg-white/10 text-white hover:border-white/70 hover:bg-white/20 hover:text-white sm:min-w-[8rem]"
+              >
                 Subscribe
               </Button>
             </form>
@@ -120,14 +125,14 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-3 flex items-center gap-2">
               <PaxillinLogoMark className="h-10 w-10" />
-              <span className="font-heading text-2xl font-semibold text-white">
+              <span className="font-heading text-2xl font-semibold text-paxillin-secondary">
                 Paxillin
               </span>
             </div>
-            <p className="mb-2 max-w-sm text-left text-lg text-white/90">
+            <p className="mb-2 max-w-sm text-left text-lg font-medium text-paxillin-secondary">
               Better care starts with better-connected professionals.
             </p>
-            <p className="mb-6 max-w-sm text-left text-sm text-white/55">
+            <p className="mb-6 max-w-sm text-left text-sm text-paxillin-ink/65">
               A focused space for healthcare professionals to collaborate — not
               a social feed.
             </p>
@@ -137,10 +142,12 @@ const Footer = () => {
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-colors hover:border-white/30 hover:bg-white/10"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-paxillin-secondary/35 bg-paxillin-secondary shadow-md transition-colors hover:border-paxillin-secondary hover:bg-paxillin-900"
                   aria-label={social.name}
                 >
-                  {social.icon}
+                  <span className="pointer-events-none [&_img]:h-5 [&_img]:w-5 [&_img]:object-contain">
+                    {social.icon}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -148,7 +155,7 @@ const Footer = () => {
 
           {footerLinks.map((section) => (
             <div key={section.title} className="text-left">
-              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-paxillin-mist">
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-paxillin-sage">
                 {section.title}
               </h4>
               <ul className="space-y-2.5">
@@ -156,7 +163,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-white"
+                      className="text-sm text-paxillin-ink/70 transition-colors hover:text-paxillin-secondary"
                     >
                       {link.name}
                     </Link>
@@ -168,12 +175,12 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-paxillin-mist/40">
         <div className="content-container flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
-          <p className="text-center text-sm text-white/50 md:text-left">
+          <p className="text-center text-sm text-paxillin-ink/55 md:text-left">
             © 2026 Paxillin. All rights reserved.
           </p>
-          <span className="text-sm text-paxillin-mist">Secure, privacy-first</span>
+          <span className="text-sm text-paxillin-ink/50">Secure, privacy-first</span>
         </div>
       </div>
     </footer>

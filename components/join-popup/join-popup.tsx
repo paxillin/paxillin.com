@@ -1,26 +1,26 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { ArrowRight, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { marketingInputErrorClasses, marketingLabelClasses } from "@/lib/form-fields";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
 
-// ModalContactForm.jsx
-// A simple, accessible popup modal with Name, Email, Phone and Submit button.
-// Tailwind: primary CTA, calm modal chrome.
 const validatePhone = (value: string) => {
-  if (!value) return true; // Phone is optional
-  // Optional +91, followed by 10 digits starting with 6-9
+  if (!value) return true;
   const phoneRegex = /^(\+91)?[6-9]\d{9}$/;
   return phoneRegex.test(value);
 };
 
-export default function ModalContactForm({
-  open,
-  onClose,
-}: {
+type ModalContactFormProps = Readonly<{
   open: boolean;
   onClose: () => void;
-}) {
+}>;
+
+export default function ModalContactForm({ open, onClose }: ModalContactFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -52,7 +52,6 @@ export default function ModalContactForm({
 
   useEffect(() => {
     if (!open) {
-      // reset form when modal closes
       setName("");
       setEmail("");
       setPhone("");
@@ -68,13 +67,11 @@ export default function ModalContactForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate required fields
     if (!name.trim() || !email.trim()) {
       setSubmitError("Name and email are required.");
       return;
     }
 
-    // Validate phone if provided
     if (phone && !validatePhone(phone)) {
       setPhoneError("Enter a valid 10-digit Indian phone number.");
       return;
@@ -103,7 +100,6 @@ export default function ModalContactForm({
           result.message || "Thank you for joining our early access list!"
         );
         setSubmitted(true);
-        // close after 2s
         setTimeout(() => {
           setSubmitted(false);
           onClose?.();
@@ -123,90 +119,89 @@ export default function ModalContactForm({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[10050] flex items-center justify-center p-4"
       aria-modal="true"
       role="dialog"
       aria-labelledby="modal-title"
       aria-describedby="modal-desc"
     >
-      {/* overlay */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/45 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* modal panel */}
       <div
         ref={modalRef}
-        className="relative w-full max-w-md rounded-2xl shadow-2xl bg-white ring-1 ring-black/5 overflow-hidden"
+        className="relative w-full max-w-md overflow-hidden rounded-2xl bg-paxillin-parchment font-montserrat shadow-2xl ring-1 ring-paxillin-mist/40"
       >
-        {/* header */}
-        <div className="px-6 py-4 flex items-center justify-between bg-primary">
-          <h2 id="modal-title" className="text-primary-foreground text-lg font-semibold">
+        <header className="flex items-center justify-between border-b border-paxillin-mist/50 px-5 py-4 sm:px-6">
+          <h2
+            id="modal-title"
+            className="font-heading text-xl font-semibold tracking-tight text-paxillin-secondary"
+          >
             Request early access
           </h2>
           <button
+            type="button"
             onClick={onClose}
             aria-label="Close modal"
-            className="rounded-md p-1 hover:bg-white/10 transition text-white"
+            className="rounded-full p-2 text-paxillin-ink/55 transition-colors hover:bg-black/[0.05] hover:text-paxillin-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paxillin-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-paxillin-parchment"
           >
-            ✕
+            <X className="h-5 w-5" strokeWidth={2} aria-hidden />
           </button>
-        </div>
+        </header>
 
-        {/* body / form */}
-        <div className="px-6 py-6 text-left">
+        <div className="px-5 py-6 text-left sm:px-6" id="modal-desc">
           {submitted ? (
-            <p className="text-center text-lg font-medium text-primary">
+            <p className="text-center font-serif text-base font-medium leading-relaxed text-paxillin-secondary">
               {successMessage}
             </p>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="px-6 py-6 text-left"
-              id="modal-desc"
-            >
+            <form onSubmit={handleSubmit} className="space-y-5">
               {submitError && (
-                <div className="mb-4 p-3 rounded bg-red-100 text-red-700 border border-red-300 text-sm">
+                <div
+                  className="rounded-xl border border-red-200 bg-red-50/90 px-3 py-2.5 text-sm text-red-800"
+                  role="alert"
+                >
                   {submitError}
                 </div>
               )}
 
-              <label className="block mb-4 text-left">
-                <span className="block text-sm font-medium text-slate-700">
+              <label className="block text-left">
+                <span className={marketingLabelClasses}>
                   Name <span className="text-red-500">*</span>
                 </span>
-                <input
+                <Input
+                  variant="marketing"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your full name"
                   disabled={isSubmitting}
                   required
-                  className="mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 border-gray-200 disabled:opacity-50"
                 />
               </label>
 
-              <label className="block mb-4 text-left">
-                <span className="block text-sm font-medium text-slate-700">
+              <label className="block text-left">
+                <span className={marketingLabelClasses}>
                   Email <span className="text-red-500">*</span>
                 </span>
-                <input
+                <Input
+                  variant="marketing"
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  type="email"
                   disabled={isSubmitting}
                   required
-                  className="mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 border-gray-200 disabled:opacity-50"
                 />
               </label>
 
-              <label className="block mb-6 text-left">
-                <span className="block text-sm font-medium text-slate-700">
-                  Phone (optional)
-                </span>
-                <input
+              <label className="block text-left">
+                <span className={marketingLabelClasses}>Phone (optional)</span>
+                <Input
+                  variant="marketing"
+                  type="tel"
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
@@ -219,43 +214,28 @@ export default function ModalContactForm({
                     }
                   }}
                   placeholder="+91 98765 43210"
-                  type="tel"
                   disabled={isSubmitting}
-                  className={`mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 disabled:opacity-50 ${phoneError
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-200 focus:ring-primary"
-                    }`}
+                  className={cn(phoneError && marketingInputErrorClasses)}
                 />
                 {phoneError && (
-                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+                  <p className="mt-1.5 text-sm text-red-600">{phoneError}</p>
                 )}
               </label>
 
-              <div className="flex items-center justify-between gap-3">
-                <button
+              <div className="pt-1">
+                <Button
                   type="submit"
+                  variant="cta"
+                  size="default"
                   disabled={isSubmitting}
-                  className="flex-1 inline-flex items-center justify-center rounded-button px-4 py-2.5 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-11 min-h-11 w-full justify-center px-5 text-sm shadow-md gap-1.5"
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={onClose}
-                  disabled={isSubmitting}
-                  className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-200 bg-white disabled:opacity-50"
-                >
-                  Cancel
-                </button>
+                  {!isSubmitting && (
+                    <ArrowRight className="opacity-95" strokeWidth={2} aria-hidden />
+                  )}
+                </Button>
               </div>
-
-              <style>{`
-            input:focus {
-              box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.15);
-              border-color: var(--paxillin-cta) !important;
-            }
-          `}</style>
             </form>
           )}
         </div>

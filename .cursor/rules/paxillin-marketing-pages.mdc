@@ -1,0 +1,53 @@
+---
+description: Page shell, hero, and typography conventions for Paxillin marketing and policy routes (aligned with app/features).
+globs: app/**/*.tsx
+alwaysApply: false
+---
+
+# Paxillin page conventions
+
+Use these patterns for `app/**/page.tsx` unless the route is intentionally experimental (e.g. a unique landing layout).
+
+## Shell
+
+- Wrap the page in `PageLayout` from `@/components/layout/PageLayout`.
+- Inner root: `min-h-screen bg-white font-sans antialiased`.
+- Order: `Header` → main sections → optional bottom CTA band → `Footer`.
+
+## Hero (centered marketing / doc intros)
+
+- Section: `section` with `px-4 pb-16 pt-16` (or `pt-20` if the header needs more air).
+- Inner: `div.container.mx-auto.text-center`.
+- Optional eyebrow: `Badge` with `variant="secondary"` and  
+  `className="mb-6 border border-paxillin-mist/50 bg-white/90 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-paxillin-ink/55"`.
+- Title: `h1` with  
+  `font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-paxillin-secondary md:mb-8 md:text-6xl md:leading-[1.08]"`.  
+  Use a `span.block` (and `md:mt-2`) for a second line when splitting the headline.
+- Subtitle: `mx-auto max-w-2xl text-base font-normal leading-relaxed text-paxillin-ink/65 md:text-lg"` (widen to `max-w-3xl` only when needed).
+
+Avoid long gradient text on headlines and avoid `text-gray-*` for primary copy; prefer `text-paxillin-secondary` and `text-paxillin-ink` with opacity modifiers.
+
+## Body sections
+
+- Default: `section` + `px-4` + vertical padding (`py-16` / `pb-16` as needed) + `container mx-auto`.
+- In-section headings: `font-heading text-3xl font-semibold text-paxillin-secondary` (scale with `md:text-4xl` where appropriate).
+- Supporting copy: `text-paxillin-ink/65` or `/70`, `leading-relaxed`.
+- Cards and panels: `rounded-2xl border border-paxillin-mist/50 bg-white` or `bg-paxillin-parchment/40`; use `shadow-card` sparingly.
+
+## Bottom CTA band (when the page ends with a call to action)
+
+Match the features page closing block:
+
+- `section` with `bg-paxillin-primary px-4 py-24`.
+- `container mx-auto text-center`.
+- Heading: `mb-6 text-3xl font-bold text-white md:text-5xl`.
+- Body: `mx-auto mb-8 max-w-3xl text-blue-100 md:text-xl`.
+
+## Policy / long-form pages
+
+- Same white shell and hero typography as above; keep semantic colors (red/amber) for warnings and destructive steps.
+- TOC sidebar: `sticky top-24`, `rounded-xl border border-paxillin-mist/50 bg-white`; nav links `text-paxillin-ink/70 hover:text-paxillin-primary`.
+
+## Home (`app/page.tsx`)
+
+May keep a distinct hero (e.g. parchment band, `content-container`) but headings and body copy should still use `font-heading`, `text-paxillin-secondary`, and `text-paxillin-ink/*` for consistency.

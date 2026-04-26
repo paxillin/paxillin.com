@@ -4,11 +4,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { marketingLabelClasses } from "@/lib/form-fields";
+import { cn } from "@/lib/utils";
+
 const FeedbackFormImg = "/images/feedback-form.jpg";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
 
-// Zod Schema
 const feedbackSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
   email: z.string().email("Invalid email address"),
@@ -55,7 +61,8 @@ const FeedbackForm = () => {
       } else {
         setSubmitStatus({
           type: "error",
-          message: result.message || "Failed to submit feedback. Please try again.",
+          message:
+            result.message || "Failed to submit feedback. Please try again.",
         });
       }
     } catch (error) {
@@ -70,94 +77,107 @@ const FeedbackForm = () => {
   };
 
   return (
-    <div className="py-4 max-w-6xl px-6 md:p-10 bg-white flex flex-col md:flex-row items-center justify-center mx-auto gap-10">
+    <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-10 bg-white px-6 py-4 md:flex-row md:p-10">
       <div className="w-full md:w-[50%]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="text-2xl text-left md:text-center font-bold mb-6 text-paxillin-secondary">
+          <h2 className="mb-6 text-left font-heading text-2xl font-semibold text-paxillin-secondary md:text-center md:text-3xl">
             Feedback Form
           </h2>
 
           {submitStatus && (
             <div
-              className={`mb-4 p-3 rounded ${submitStatus.type === "success"
-                ? "bg-green-100 text-green-700 border border-green-300"
-                : "bg-red-100 text-red-700 border border-red-300"
-                }`}
+              className={cn(
+                "mb-4 rounded-xl border px-3 py-2.5 text-sm",
+                submitStatus.type === "success"
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+                  : "border-red-200 bg-red-50 text-red-800"
+              )}
             >
               {submitStatus.message}
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="mb-4">
-              <label className="block text-left text-sm font-medium mb-1">
-                Full Name
+          <div className="mb-6 grid gap-5 md:grid-cols-2 md:gap-4">
+            <div>
+              <label className={marketingLabelClasses} htmlFor="feedback-fullName">
+                Full name
               </label>
-              <input
+              <Input
+                id="feedback-fullName"
+                variant="marketing"
                 type="text"
-                {...register("fullName")}
                 placeholder="Your name"
-                className="w-full p-2 border rounded"
                 disabled={isSubmitting}
+                className={cn(errors.fullName && "border-red-400 focus-visible:border-red-500 focus-visible:ring-red-500/20")}
+                {...register("fullName")}
               />
               {errors.fullName?.message && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors?.fullName?.message}
+                <p className="mt-1.5 text-sm text-red-600">
+                  {errors.fullName.message}
                 </p>
               )}
             </div>
 
-            <div className="mb-4">
-              <label className="block text-left text-sm font-medium mb-1">
-                Email Address
+            <div>
+              <label className={marketingLabelClasses} htmlFor="feedback-email">
+                Email
               </label>
-              <input
+              <Input
+                id="feedback-email"
+                variant="marketing"
                 type="email"
-                {...register("email")}
                 placeholder="you@example.com"
-                className="w-full p-2 border rounded"
                 disabled={isSubmitting}
+                className={cn(errors.email && "border-red-400 focus-visible:border-red-500 focus-visible:ring-red-500/20")}
+                {...register("email")}
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="mt-1.5 text-sm text-red-600">
                   {errors.email.message}
                 </p>
               )}
             </div>
           </div>
 
-          <div className="mb-4">
-            <label className="block text-left text-sm font-medium mb-1">
-              Your Message
+          <div className="mb-6">
+            <label className={marketingLabelClasses} htmlFor="feedback-message">
+              Your message
             </label>
-            <textarea
-              {...register("message")}
+            <Textarea
+              id="feedback-message"
+              variant="marketing"
               rows={4}
               placeholder="Share your thoughts..."
-              className="w-full p-2 border rounded"
               disabled={isSubmitting}
-            ></textarea>
+              className={cn(errors.message && "border-red-400 focus-visible:border-red-500 focus-visible:ring-red-500/20")}
+              {...register("message")}
+            />
             {errors.message && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="mt-1.5 text-sm text-red-600">
                 {errors.message.message}
               </p>
             )}
           </div>
 
-          <button
+          <Button
             type="submit"
+            variant="cta"
+            size="lg"
             disabled={isSubmitting}
-            className="w-full bg-paxillin-primary text-white p-3 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full justify-center gap-2 shadow-md md:w-auto md:min-w-[14rem]"
           >
-            {isSubmitting ? "Submitting..." : "Submit Feedback"}
-          </button>
+            {isSubmitting ? "Submitting..." : "Submit feedback"}
+            {!isSubmitting && (
+              <ArrowRight className="opacity-95" strokeWidth={2} aria-hidden />
+            )}
+          </Button>
         </form>
       </div>
       <div className="w-full md:w-[50%]">
         <img
           src={FeedbackFormImg}
           alt="Feedback Illustration"
-          className="w-full h-[200px] md:h-[400px] mt-6 rounded-lg object-cover"
+          className="mt-6 h-[200px] w-full rounded-2xl object-cover md:mt-0 md:h-[400px]"
         />
       </div>
     </div>
