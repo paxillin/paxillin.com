@@ -1,5 +1,5 @@
 # This workflow will build and push a new container image to Amazon ECR
-# when there is a push to the "master" branch.
+# when there is a push to the "master" branch, then deploy it to Amazon ECS.
 #
 # To use this workflow, you will need to complete the following set-up steps:
 #
@@ -9,6 +9,12 @@
 #    Replace the value of the `AWS_REGION` environment variable in the workflow below with your repository's region.
 #
 # 2. Store an IAM user access key in GitHub Actions secrets named `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+#
+# 3. Configure GitHub Actions variables for ECS (repository / environment variables):
+#    - ECS_CLUSTER: ECS cluster name
+#    - ECS_SERVICE: ECS service name
+#    - ECS_TASK_DEFINITION: existing task definition family name (e.g. my-app)
+#    - ECS_CONTAINER_NAME: container name inside that task definition whose image should be updated
 
 name: Push to Amazon ECR
 
@@ -28,6 +34,8 @@ jobs:
     name: Push
     runs-on: ubuntu-latest
     environment: production
+    outputs:
+      image: ${{ steps.image-uri.outputs.image }}
 
     steps:
     - name: Checkout
@@ -51,3 +59,48 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Export image URI for ECS deploy
+      id: image-uri
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    name: Deploy to ECS
+    needs: push
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Download current ECS task definition
+      run: |
+        aws ecs describe-task-definition \
+          --task-definition "${{ vars.ECS_TASK_DEFINITION }}" \
+          --query taskDefinition \
+          --output json | jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)' > task-definition.json
+
+    - name: Render task definition with new image
+      id: render-task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: ${{ vars.ECS_CONTAINER_NAME }}
+        image: ${{ needs.push.outputs.image }}
+
+    - name: Deploy to Amazon ECS
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+      with:
+        task-definition: ${{ steps.render-task-def.outputs.task-definition }}
+        service: ${{ vars.ECS_SERVICE }}
+        cluster: ${{ vars.ECS_CLUSTER }}
+        wait-for-service-stability: true

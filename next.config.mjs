@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: 'lovable.dev',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
 };
