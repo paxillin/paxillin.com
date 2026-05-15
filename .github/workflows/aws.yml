@@ -46,8 +46,9 @@ jobs:
     name: Push
     runs-on: ubuntu-latest
     environment: production
-    outputs:
-      image: ${{ steps['image-uri'].outputs.image }}
+    permissions:
+      contents: read
+      actions: write
 
     steps:
     - name: Checkout
@@ -78,19 +79,23 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    - name: Export image URI for ECS deploy
-      id: image-uri
-      env:
-        ECR_REGISTRY: ${{ steps['login-ecr'].outputs.registry }}
-        IMAGE_TAG: ${{ steps['build-meta'].outputs.sha }}
-      run: |
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> "$GITHUB_OUTPUT"
+    - name: Write image tag file
+      run: echo -n "${{ steps['build-meta'].outputs.sha }}" > image-tag.txt
+
+    - name: Upload image tag for deploy job
+      uses: actions/upload-artifact@v4
+      with:
+        name: ecs-image-tag
+        path: image-tag.txt
 
   deploy:
     name: Deploy to ECS
     needs: push
     runs-on: ubuntu-latest
     environment: production
+    permissions:
+      contents: read
+      actions: read
 
     steps:
     - name: Configure AWS credentials
@@ -100,6 +105,16 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Download image tag from push job
+      uses: actions/download-artifact@v4
+      with:
+        name: ecs-image-tag
+        path: deploy-meta
+
     - name: Download current ECS task definition
       run: |
         aws ecs describe-task-definition \
@@ -107,13 +122,29 @@ jobs:
           --query taskDefinition \
           --output json | jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)' > task-definition.json
 
+    - name: Compose ECR image URI
+      id: deploy_image
+      env:
+        REGISTRY: ${{ steps['login-ecr'].outputs.registry }}
+        REPO: ${{ env.ECR_REPOSITORY }}
+      run: |
+        TAG_FILE=$(find deploy-meta -name image-tag.txt -type f | head -1)
+        if [ -z "$TAG_FILE" ] || [ ! -f "$TAG_FILE" ]; then
+          echo "::error::image-tag.txt not found under deploy-meta/ (artifact layout changed?)"
+          find deploy-meta -type f 2>/dev/null || true
+          exit 1
+        fi
+        TAG=$(tr -d '[:space:]' < "$TAG_FILE")
+        if [ -z "$REGISTRY" ]; then echo "::error::ECR login did not return registry"; exit 1; fi
+        echo "uri=${REGISTRY}/${REPO}:${TAG}" >> "$GITHUB_OUTPUT"
+
     - name: Render task definition with new image
       id: render-task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
         container-name: ${{ vars.ECS_CONTAINER_NAME }}
-        image: ${{ needs.push.outputs.image }}
+        image: ${{ steps.deploy_image.outputs.uri }}
 
     - name: Deploy to Amazon ECS
       uses: aws-actions/amazon-ecs-deploy-task-definition@v2
