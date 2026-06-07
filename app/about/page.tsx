@@ -71,19 +71,19 @@ const milestones = [
       "Started with a vision to revolutionize professional and social healthcare networking.",
   },
   {
-    year: "Q1 2026",
+    year: "Q1 2027",
     title: "Alpha Development",
     description:
       "Core features developed with input from leading healthcare professionals and early adopters.",
   },
   {
-    year: "Q2 2026",
+    year: "Q2 2027",
     title: "Beta Testing Launch",
     description:
       "Expanded testing with 10,000+ verified medical professionals and community users.",
   },
   {
-    year: "Q3 2026",
+    year: "Q3 2027",
     title: "Public Release",
     description:
       "Full platform launch with comprehensive, compliant, enterprise-grade security.",

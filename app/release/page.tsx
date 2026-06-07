@@ -22,7 +22,7 @@ const Release = () => {
   {
     phase: "alpha",
     title: "Alpha Testing Phase",
-    period: "Q1 2026",
+    period: "Q1 2027",
     status: "upcoming",
     participants: "100 healthcare professionals",
     duration: "3 months",
@@ -50,7 +50,7 @@ const Release = () => {
   {
     phase: "beta",
     title: "Beta Testing Phase",
-    period: "Q2 2026",
+    period: "Q2 2027",
     status: "planned",
     participants: "1,000 healthcare professionals",
     duration: "4 months",
@@ -80,7 +80,7 @@ const Release = () => {
   {
     phase: "public",
     title: "Public Release",
-    period: "Q3 2026",
+    period: "Q3 2027",
     status: "planned",
     participants: "Open to all Healthcare professionals",
     duration: "Ongoing",
@@ -118,7 +118,7 @@ const Release = () => {
 
  const milestones = [
   {
-    date: "Q1 2026",
+    date: "Q1 2027",
     title: "Alpha Launch",
     description:
       "Limited release to 100 selected healthcare professionals.",
@@ -126,7 +126,7 @@ const Release = () => {
     color: "bg-blue-500"
   },
   {
-    date: "Q2 2026",
+    date: "Q2 2027",
     title: "Beta Launch",
     description:
       "Expanded access to 1,000 medical professionals nationwide.",
@@ -134,7 +134,7 @@ const Release = () => {
     color: "bg-purple-500"
   },
   {
-    date: "Q3 2026",
+    date: "Q3 2027",
     title: "Public Launch",
     description:
       "Full platform availability for all healthcare professionals.",
@@ -156,7 +156,7 @@ const Release = () => {
             variant="secondary"
             className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-pexilllin-primary border-0"
           >
-           Release Roadmap 2026
+           Release Roadmap 2027
           </Badge>
        <h1 className="text-5xl md:text-7xl font-bold block text-transparent bg-clip-text bg-gradient-to-r from-[#0f2c4d] via-[#165176] to-[#3CAFE6]
 
