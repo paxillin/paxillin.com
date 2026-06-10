@@ -3,7 +3,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageLayout from "@/components/layout/PageLayout";
-import { Badge } from "@/components/ui/badge";
 import { Shield, Mail, Baby, AlertTriangle, UserX, Flag, Lock, FileText, Users, Eye, Scale, Phone } from 'lucide-react';
 
 const ChildSafety = () => {
@@ -21,46 +20,41 @@ const ChildSafety = () => {
 
   return (
     <PageLayout>
-      <div className="min-h-screen bg-white font-sans antialiased">
+      <div className="min-h-screen bg-white">
         <Header />
 
-        <section className="border-b border-paxillin-mist/40 px-4 pb-12 pt-16">
-          <div className="container mx-auto max-w-4xl text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 border border-paxillin-mist/50 bg-white/90 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-paxillin-ink/55"
-            >
-              Safety
-            </Badge>
-            <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-amber-200 bg-amber-50">
-              <Baby className="h-7 w-7 text-amber-700" />
-            </div>
-            <h1 className="mb-4 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-paxillin-secondary md:text-5xl md:leading-[1.08]">
-              Child safety policy
-            </h1>
-            <p className="text-lg text-paxillin-ink/65">
-              Our commitment to protecting children and preventing exploitation on our platform.
-            </p>
-            <div className="mt-6 inline-flex items-center rounded-full border border-paxillin-mist/50 bg-paxillin-parchment/30 px-4 py-2">
-              <span className="text-sm text-paxillin-ink/55">Last updated:</span>
-              <span className="ml-2 text-sm font-semibold text-paxillin-secondary">December 2, 2025</span>
+        {/* Hero Section */}
+        <div className="bg-pax-cloud border-b border-pax-line">
+          <div className="container mx-auto px-4 py-16 md:py-20 max-w-4xl">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-pax-sky rounded-xl mb-6">
+                <Baby className="w-7 h-7 text-pax-cyan" />
+              </div>
+              <h1 className="pax-section-title mb-4">Child Safety Policy</h1>
+              <p className="pax-section-sub">
+                Our commitment to protecting children and preventing exploitation on our platform.
+              </p>
+              <div className="mt-5 inline-flex items-center px-4 py-2 bg-white rounded-full border border-pax-line">
+                <span className="text-sm text-pax-slate">Last Updated:</span>
+                <span className="text-sm font-semibold text-pax-navy ml-2">December 2, 2025</span>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <div className="py-12">
-          <div className="container mx-auto max-w-5xl px-4">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+        <div className="py-12 md:py-16">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Table of Contents - Sidebar */}
               <div className="lg:col-span-1">
-                <div className="sticky top-24 rounded-xl border border-paxillin-mist/50 bg-white p-4 shadow-sm">
-                  <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-paxillin-secondary">Contents</h3>
+                <div className="sticky top-24 pax-card p-4">
+                  <h3 className="font-semibold text-pax-navy mb-4 text-sm uppercase tracking-wide">Contents</h3>
                   <nav className="space-y-1">
                     {sections.map((section) => (
                       <a
                         key={section.id}
                         href={`#${section.id}`}
-                        className="block rounded-lg px-3 py-2 text-sm text-paxillin-ink/70 transition-colors hover:bg-paxillin-parchment/50 hover:text-paxillin-primary"
+                        className="block text-sm text-pax-slate hover:text-pax-cyan hover:bg-pax-ice px-3 py-2 rounded-lg transition-all duration-200"
                       >
                         {section.title}
                       </a>
@@ -71,19 +65,19 @@ const ChildSafety = () => {
 
               {/* Main Content */}
               <div className="lg:col-span-3">
-                <div className="rounded-xl border border-paxillin-mist/50 bg-white p-4 shadow-sm sm:p-6 md:p-10">
+                <div className="pax-card p-4 sm:p-6 md:p-10 text-left">
                   {/* Introduction */}
-                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 sm:p-6 mb-8 border border-amber-100">
-                    <p className="text-paxillin-ink/80 leading-relaxed">
-                      <strong>Paxillin Interface Private Limited</strong> (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to maintaining a safe environment and protecting children from exploitation, abuse, and harmful content. This Child Safety Policy outlines our standards, procedures, and commitment to preventing Child Sexual Abuse and Exploitation (CSAE) and ensuring our platform remains safe for all users.
+                  <div className="bg-pax-cloud rounded-xl p-4 sm:p-6 mb-8 border border-pax-line">
+                    <p className="text-pax-ink leading-relaxed">
+                      <strong className="text-pax-navy">Paxillin Interface Private Limited</strong> (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to maintaining a safe environment and protecting children from exploitation, abuse, and harmful content. This Child Safety Policy outlines our standards, procedures, and commitment to preventing Child Sexual Abuse and Exploitation (CSAE) and ensuring our platform remains safe for all users.
                     </p>
                   </div>
 
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4 sm:p-6 mb-8">
+                  <div className="bg-pax-mist border border-pax-line rounded-xl p-4 sm:p-6 mb-8">
                     <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <p className="text-paxillin-ink/80 leading-relaxed">
-                        <strong>Zero Tolerance Policy:</strong> Paxillin maintains an absolute zero-tolerance stance toward any content or behavior that exploits, endangers, or sexualizes children. Any violation will result in immediate account termination and reporting to relevant law enforcement authorities.
+                      <AlertTriangle className="w-5 h-5 text-pax-navy mt-0.5 flex-shrink-0" />
+                      <p className="text-pax-ink leading-relaxed">
+                        <strong className="text-pax-navy">Zero Tolerance Policy:</strong> Paxillin maintains an absolute zero-tolerance stance toward any content or behavior that exploits, endangers, or sexualizes children. Any violation will result in immediate account termination and reporting to relevant law enforcement authorities.
                       </p>
                     </div>
                   </div>
@@ -91,13 +85,13 @@ const ChildSafety = () => {
                   {/* Section 1 */}
                   <section id="commitment" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paxillin-parchment/60 sm:h-10 sm:w-10">
-                        <Shield className="w-5 h-5 text-paxillin-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Shield className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">1. Our Commitment to Child Safety</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">1. Our Commitment to Child Safety</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-paxillin-mist/60 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         At Paxillin, child safety is a fundamental priority. We are dedicated to:
                       </p>
                       <ul className="space-y-3">
@@ -110,8 +104,8 @@ const ChildSafety = () => {
                           'Training our team members on child safety protocols and best practices.',
                         ].map((item, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-paxillin-primary rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-paxillin-ink/80">{item}</span>
+                            <span className="w-2 h-2 bg-pax-cyan rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-pax-ink">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -121,18 +115,18 @@ const ChildSafety = () => {
                   {/* Section 2 */}
                   <section id="age-restrictions" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <UserX className="w-5 h-5 text-amber-600" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <UserX className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">2. Age Restrictions</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">2. Age Restrictions</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-amber-200 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
-                        <p className="text-paxillin-ink/80 leading-relaxed font-semibold">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <div className="bg-pax-ice border border-pax-line rounded-xl p-4 mb-4">
+                        <p className="text-pax-navy leading-relaxed font-semibold">
                           Paxillin is strictly intended for healthcare professionals aged 18 years and above.
                         </p>
                       </div>
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         Our age verification and restriction measures include:
                       </p>
                       <ul className="space-y-2">
@@ -144,12 +138,12 @@ const ChildSafety = () => {
                           'Clear terms of service stating the minimum age requirement.',
                         ].map((item, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-paxillin-ink/80">{item}</span>
+                            <span className="w-2 h-2 bg-pax-cyan rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-pax-ink">{item}</span>
                           </li>
                         ))}
                       </ul>
-                      <p className="text-paxillin-ink/80 leading-relaxed mt-4">
+                      <p className="text-pax-ink leading-relaxed mt-4">
                         If we discover that personal information has been collected from anyone under 18, we will delete that information immediately and take appropriate action.
                       </p>
                     </div>
@@ -158,15 +152,15 @@ const ChildSafety = () => {
                   {/* Section 3 */}
                   <section id="csae-prevention" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <AlertTriangle className="w-5 h-5 text-red-600" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <AlertTriangle className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">3. Child Sexual Abuse and Exploitation (CSAE) Prevention Standards</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">3. Child Sexual Abuse and Exploitation (CSAE) Prevention Standards</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-red-200 ml-0 sm:ml-4 pl-0 sm:pl-5 space-y-6">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5 space-y-6">
                       <div>
-                        <p className="text-paxillin-ink/80 font-semibold mb-3">Prohibited Content and Behavior:</p>
-                        <p className="text-paxillin-ink/80 leading-relaxed mb-3">
+                        <p className="text-pax-navy font-semibold mb-3">Prohibited Content and Behavior:</p>
+                        <p className="text-pax-ink leading-relaxed mb-3">
                           The following content and behaviors are strictly prohibited and will result in immediate action:
                         </p>
                         <ul className="space-y-2">
@@ -180,15 +174,15 @@ const ChildSafety = () => {
                             'Artificially generated (AI/deepfake) sexual content involving minors.',
                           ].map((item, index) => (
                             <li key={index} className="flex items-start gap-3">
-                              <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                              <span className="text-paxillin-ink/80">{item}</span>
+                              <span className="w-2 h-2 bg-pax-navy rounded-full mt-2 flex-shrink-0"></span>
+                              <span className="text-pax-ink">{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
                       <div>
-                        <p className="text-paxillin-ink/80 font-semibold mb-3">Our Prevention Measures:</p>
+                        <p className="text-pax-navy font-semibold mb-3">Our Prevention Measures:</p>
                         <ul className="space-y-2">
                           {[
                             'Implementation of automated detection systems to identify and remove CSAM and related content.',
@@ -198,8 +192,8 @@ const ChildSafety = () => {
                             'Regular updates to detection systems based on emerging threats and techniques.',
                           ].map((item, index) => (
                             <li key={index} className="flex items-start gap-3">
-                              <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
-                              <span className="text-paxillin-ink/80">{item}</span>
+                              <span className="w-2 h-2 bg-pax-green rounded-full mt-2 flex-shrink-0"></span>
+                              <span className="text-pax-ink">{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -210,13 +204,13 @@ const ChildSafety = () => {
                   {/* Section 4 */}
                   <section id="content-moderation" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paxillin-parchment/60 sm:h-10 sm:w-10">
-                        <Eye className="w-5 h-5 text-paxillin-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Eye className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">4. Content Moderation</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">4. Content Moderation</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-paxillin-mist/60 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         Our content moderation approach includes multiple layers of protection:
                       </p>
                       <ul className="space-y-3">
@@ -228,9 +222,9 @@ const ChildSafety = () => {
                           { label: 'Swift Removal', desc: 'Violating content is removed immediately upon detection, and accounts are terminated.' },
                         ].map((item, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-paxillin-primary rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-paxillin-ink/80">
-                              <strong>{item.label}:</strong> {item.desc}
+                            <span className="w-2 h-2 bg-pax-cyan rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-pax-ink">
+                              <strong className="text-pax-navy">{item.label}:</strong> {item.desc}
                             </span>
                           </li>
                         ))}
@@ -241,38 +235,38 @@ const ChildSafety = () => {
                   {/* Section 5 */}
                   <section id="reporting" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Flag className="w-5 h-5 text-orange-600" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Flag className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">5. Reporting Mechanisms</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">5. Reporting Mechanisms</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-orange-200 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         We provide multiple channels for reporting child safety concerns:
                       </p>
                       <div className="space-y-4">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                          <p className="text-paxillin-ink/80 font-semibold mb-2">In-App Reporting:</p>
-                          <p className="text-paxillin-ink/80">Use the &quot;Report&quot; feature available on all content and user profiles to flag concerning material or behavior.</p>
+                        <div className="bg-pax-cloud border border-pax-line rounded-xl p-4">
+                          <p className="text-pax-navy font-semibold mb-2">In-App Reporting:</p>
+                          <p className="text-pax-ink">Use the &quot;Report&quot; feature available on all content and user profiles to flag concerning material or behavior.</p>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                          <p className="text-paxillin-ink/80 font-semibold mb-2">Email Reporting:</p>
-                          <p className="text-paxillin-ink/80">
+                        <div className="bg-pax-cloud border border-pax-line rounded-xl p-4">
+                          <p className="text-pax-navy font-semibold mb-2">Email Reporting:</p>
+                          <p className="text-pax-ink">
                             Send reports directly to our Child Safety Team at{' '}
-                            <a href="mailto:safety@paxillin.com" className="text-paxillin-primary font-medium hover:underline">
+                            <a href="mailto:safety@paxillin.com" className="text-pax-cyan font-medium hover:underline">
                               safety@paxillin.com
                             </a>
                           </p>
                         </div>
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                          <p className="text-paxillin-ink/80 font-semibold mb-2">External Reporting:</p>
-                          <p className="text-paxillin-ink/80">
+                        <div className="bg-pax-cloud border border-pax-line rounded-xl p-4">
+                          <p className="text-pax-navy font-semibold mb-2">External Reporting:</p>
+                          <p className="text-pax-ink">
                             You may also report to the National Center for Missing &amp; Exploited Children (NCMEC) CyberTipline or your local law enforcement authorities.
                           </p>
                         </div>
                       </div>
-                      <p className="text-paxillin-ink/80 leading-relaxed mt-4">
-                        <strong>Response Commitment:</strong> All child safety reports are treated as high priority and are reviewed within 24 hours. We cooperate fully with law enforcement investigations and report confirmed CSAM to NCMEC and relevant authorities.
+                      <p className="text-pax-ink leading-relaxed mt-4">
+                        <strong className="text-pax-navy">Response Commitment:</strong> All child safety reports are treated as high priority and are reviewed within 24 hours. We cooperate fully with law enforcement investigations and report confirmed CSAM to NCMEC and relevant authorities.
                       </p>
                     </div>
                   </section>
@@ -280,13 +274,13 @@ const ChildSafety = () => {
                   {/* Section 6 */}
                   <section id="data-protection" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Lock className="w-5 h-5 text-green-600" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Lock className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">6. Data Protection for Minors</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">6. Data Protection for Minors</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-green-200 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         While our platform is not intended for minors, we maintain strict data protection measures:
                       </p>
                       <ul className="space-y-2">
@@ -298,8 +292,8 @@ const ChildSafety = () => {
                           "We comply with COPPA (Children's Online Privacy Protection Act) and similar international regulations.",
                         ].map((item, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-paxillin-ink/80">{item}</span>
+                            <span className="w-2 h-2 bg-pax-green rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-pax-ink">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -309,13 +303,13 @@ const ChildSafety = () => {
                   {/* Section 7 */}
                   <section id="parental-info" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paxillin-parchment/60 sm:h-10 sm:w-10">
-                        <Users className="w-5 h-5 text-paxillin-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Users className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">7. Information for Parents and Guardians</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">7. Information for Parents and Guardians</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-paxillin-mist/60 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         We encourage parents and guardians to be involved in their children&apos;s online activities:
                       </p>
                       <ul className="space-y-2">
@@ -327,8 +321,8 @@ const ChildSafety = () => {
                           'Educate children about online safety and the importance of not sharing personal information.',
                         ].map((item, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-paxillin-primary rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-paxillin-ink/80">{item}</span>
+                            <span className="w-2 h-2 bg-pax-cyan rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-pax-ink">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -338,13 +332,13 @@ const ChildSafety = () => {
                   {/* Section 8 */}
                   <section id="compliance" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paxillin-parchment/60 sm:h-10 sm:w-10">
-                        <Scale className="w-5 h-5 text-paxillin-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Scale className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">8. Regulatory Compliance</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">8. Regulatory Compliance</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-paxillin-mist/60 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         We comply with all applicable child safety laws and regulations, including:
                       </p>
                       <ul className="space-y-2 mb-4">
@@ -357,14 +351,14 @@ const ChildSafety = () => {
                           { label: 'POCSO Act', desc: 'Protection of Children from Sexual Offences Act compliance.' },
                         ].map((item, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-paxillin-primary rounded-full mt-2 flex-shrink-0"></span>
-                            <span className="text-paxillin-ink/80">
-                              <strong>{item.label}:</strong> {item.desc}
+                            <span className="w-2 h-2 bg-pax-cyan rounded-full mt-2 flex-shrink-0"></span>
+                            <span className="text-pax-ink">
+                              <strong className="text-pax-navy">{item.label}:</strong> {item.desc}
                             </span>
                           </li>
                         ))}
                       </ul>
-                      <p className="text-paxillin-ink/80 leading-relaxed">
+                      <p className="text-pax-ink leading-relaxed">
                         We regularly review and update our policies to ensure ongoing compliance with evolving regulations and industry best practices.
                       </p>
                     </div>
@@ -373,37 +367,37 @@ const ChildSafety = () => {
                   {/* Section 9 */}
                   <section id="contact" className="mb-10 scroll-mt-24">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paxillin-parchment/60 sm:h-10 sm:w-10">
-                        <Phone className="w-5 h-5 text-paxillin-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Phone className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">9. Child Safety Point of Contact</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">9. Child Safety Point of Contact</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-paxillin-mist/60 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed mb-4">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed mb-4">
                         For any child safety concerns or inquiries, please contact our dedicated Child Safety Team:
                       </p>
-                      <div className="rounded-lg border border-paxillin-mist/50 bg-paxillin-parchment/30 p-4">
-                        <p className="text-paxillin-ink/80 leading-relaxed">
-                          <strong>Paxillin Interface Private Limited</strong>
+                      <div className="bg-pax-cloud border border-pax-line rounded-xl p-4">
+                        <p className="text-pax-ink leading-relaxed">
+                          <strong className="text-pax-navy">Paxillin Interface Private Limited</strong>
                         </p>
-                        <p className="text-paxillin-ink/80 leading-relaxed">
+                        <p className="text-pax-ink leading-relaxed">
                           Child Safety Team
                         </p>
-                        <p className="text-paxillin-ink/80 leading-relaxed">
+                        <p className="text-pax-ink leading-relaxed">
                           Email:{' '}
-                          <a href="mailto:safety@paxillin.com" className="text-paxillin-primary font-medium hover:underline">
+                          <a href="mailto:safety@paxillin.com" className="text-pax-cyan font-medium hover:underline">
                             safety@paxillin.com
                           </a>
                         </p>
-                        <p className="text-paxillin-ink/80 leading-relaxed">
+                        <p className="text-pax-ink leading-relaxed">
                           General Inquiries:{' '}
-                          <a href="mailto:info@paxillin.com" className="text-paxillin-primary font-medium hover:underline">
+                          <a href="mailto:info@paxillin.com" className="text-pax-cyan font-medium hover:underline">
                             info@paxillin.com
                           </a>
                         </p>
                       </div>
-                      <p className="text-paxillin-ink/80 leading-relaxed mt-4">
-                        <strong>Response Time:</strong> All child safety reports are prioritized and will receive a response within 24 hours.
+                      <p className="text-pax-ink leading-relaxed mt-4">
+                        <strong className="text-pax-navy">Response Time:</strong> All child safety reports are prioritized and will receive a response within 24 hours.
                       </p>
                     </div>
                   </section>
@@ -411,29 +405,29 @@ const ChildSafety = () => {
                   {/* Policy Updates */}
                   <section className="mb-10">
                     <div className="flex items-center gap-2 sm:gap-3 mb-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paxillin-parchment/60 sm:h-10 sm:w-10">
-                        <FileText className="w-5 h-5 text-paxillin-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <FileText className="w-5 h-5 text-pax-cyan" />
                       </div>
-                      <h2 className="font-heading text-base font-semibold text-paxillin-secondary sm:text-xl">Policy Updates</h2>
+                      <h2 className="text-base sm:text-xl font-bold text-pax-navy tracking-tight">Policy Updates</h2>
                     </div>
-                    <div className="border-l-0 sm:border-l-2 border-paxillin-mist/60 ml-0 sm:ml-4 pl-0 sm:pl-5">
-                      <p className="text-paxillin-ink/80 leading-relaxed">
+                    <div className="border-l-0 sm:border-l-2 border-pax-line ml-0 sm:ml-4 pl-0 sm:pl-5">
+                      <p className="text-pax-ink leading-relaxed">
                         This Child Safety Policy may be updated periodically to reflect changes in regulations, technology, or our practices. We will notify users of significant changes through our platform or via email. Continued use of the Service after updates constitutes acceptance of the revised policy.
                       </p>
                     </div>
                   </section>
 
                   {/* Contact Section */}
-                  <div className="mt-12 rounded-xl border border-amber-200/80 bg-amber-50/40 p-4 sm:p-6">
+                  <div className="mt-12 bg-pax-cloud rounded-2xl p-4 sm:p-6 border border-pax-line">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber-200 bg-white">
-                        <Mail className="h-6 w-6 text-amber-700" />
+                      <div className="w-12 h-12 bg-pax-sky rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-6 h-6 text-pax-cyan" />
                       </div>
                       <div>
-                        <h3 className="mb-1 font-heading font-semibold text-paxillin-secondary">Report a child safety concern</h3>
-                        <p className="text-paxillin-ink/70">
+                        <h3 className="font-semibold text-pax-navy mb-1">Report a Child Safety Concern</h3>
+                        <p className="text-pax-slate">
                           If you encounter any content or behavior that endangers children, please report immediately to{' '}
-                          <a href="mailto:safety@paxillin.com" className="font-medium text-paxillin-primary hover:underline">
+                          <a href="mailto:safety@paxillin.com" className="text-pax-cyan font-medium hover:underline">
                             safety@paxillin.com
                           </a>
                         </p>

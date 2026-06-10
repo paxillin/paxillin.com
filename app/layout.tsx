@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-montserrat">
+      <body className="font-sans">
         <Providers>
           {children}
         </Providers>

@@ -78,35 +78,39 @@ const Testimonial: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-8 pt-12">
-      <h2 className="mb-8 text-center font-heading text-3xl font-semibold text-paxillin-secondary sm:text-4xl">
-        What peers say
-      </h2>
+    <div className="max-w-2xl mx-auto px-4 pt-8">
+      <h2 className="pax-section-title text-center mb-8">Testimonials</h2>
 
       <div
-        className="relative h-full min-h-[16rem]"
+        className="relative h-full"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`flex h-full min-h-[16rem] flex-col items-center p-6 text-center transition-opacity duration-700 ${
+            className={`transition-opacity duration-700 ${
               index === currentIndex
                 ? "opacity-100"
-                : "absolute inset-0 opacity-0"
-            } rounded-card-lg border border-paxillin-mist/50 bg-white shadow-card`}
+                : "opacity-0 absolute inset-0"
+            } flex flex-col items-center text-center pax-card p-8 h-full`}
           >
-            <img
-              src={testimonial.image}
-              alt={testimonial.name}
-              className="w-20 h-20 rounded-full mb-4 object-cover"
-            />
-            <h3 className="text-xl font-semibold text-gray-800">
+            <div
+              aria-hidden="true"
+              className="w-20 h-20 rounded-full mb-4 bg-pax-sky text-pax-navy flex items-center justify-center text-2xl font-bold"
+            >
+              {testimonial.name
+                .replace(/^Dr\.?\s*/i, "")
+                .split(" ")
+                .map((w) => w[0])
+                .slice(0, 2)
+                .join("")}
+            </div>
+            <h3 className="text-xl font-semibold text-pax-ink">
               {testimonial.name}
             </h3>
-            <p className="text-sm text-gray-500 mb-4">{testimonial.role}</p>
-            <div className="text-gray-700 text-base leading-relaxed h-32 overflow-hidden">
+            <p className="text-sm text-pax-cyan mb-4">{testimonial.role}</p>
+            <div className="text-pax-slate text-base leading-relaxed h-32 overflow-hidden">
               "{testimonial.message}"
             </div>
           </div>
@@ -119,13 +123,9 @@ const Testimonial: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2.5 w-2.5 rounded-full transition-colors ${
-              index === currentIndex
-                ? "bg-primary"
-                : "bg-paxillin-mist"
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+              index === currentIndex ? "bg-pax-cyan" : "bg-pax-line"
             }`}
-            aria-label={`Show testimonial ${index + 1}`}
-            type="button"
           />
         ))}
       </div>

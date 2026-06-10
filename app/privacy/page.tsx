@@ -1,7 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageLayout from "@/components/layout/PageLayout";
-import { Badge } from "@/components/ui/badge";
 import { Shield, Mail } from 'lucide-react';
 import { getPrivacyPolicy } from '@/lib/api';
 import { format } from 'date-fns';
@@ -18,52 +17,49 @@ export default async function Privacy() {
 
   return (
     <PageLayout>
-      <div className="min-h-screen bg-white font-sans antialiased">
+      <div className="min-h-screen bg-white">
         <Header />
 
-        <section className="border-b border-paxillin-mist/40 px-4 pb-12 pt-16">
-          <div className="container mx-auto max-w-4xl text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 border border-paxillin-mist/50 bg-white/90 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-paxillin-ink/55"
-            >
-              Legal
-            </Badge>
-            <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-paxillin-mist/50 bg-paxillin-parchment/50">
-              <Shield className="h-7 w-7 text-paxillin-primary" />
-            </div>
-            <h1 className="mb-4 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-paxillin-secondary md:text-5xl md:leading-[1.08]">
-              {document?.title || 'Privacy Policy'}
-            </h1>
-            {document?.subtitle && (
-              <p className="text-lg text-paxillin-ink/65">{document.subtitle}</p>
-            )}
-            {!document?.subtitle && (
-              <p className="text-lg text-paxillin-ink/65">
-                Your privacy matters to us. Learn how we protect your data.
-              </p>
-            )}
-            <div className="mt-6 inline-flex items-center rounded-full border border-paxillin-mist/50 bg-paxillin-parchment/30 px-4 py-2">
-              <span className="text-sm text-paxillin-ink/55">Last updated:</span>
-              <span className="ml-2 text-sm font-semibold text-paxillin-secondary">{effectiveDate}</span>
+        {/* Hero Section */}
+        <div className="bg-pax-cloud border-b border-pax-line">
+          <div className="container mx-auto px-4 py-16 md:py-20 max-w-4xl">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-pax-sky rounded-xl mb-6">
+                <Shield className="w-7 h-7 text-pax-cyan" />
+              </div>
+              <h1 className="pax-section-title mb-4">
+                {document?.title || 'Privacy Policy'}
+              </h1>
+              {document?.subtitle && (
+                <p className="pax-section-sub">{document.subtitle}</p>
+              )}
+              {!document?.subtitle && (
+                <p className="pax-section-sub">
+                  Your privacy matters to us. Learn how we protect your data.
+                </p>
+              )}
+              <div className="mt-5 inline-flex items-center px-4 py-2 bg-white rounded-full border border-pax-line">
+                <span className="text-sm text-pax-slate">Last Updated:</span>
+                <span className="text-sm font-semibold text-pax-navy ml-2">{effectiveDate}</span>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <div className="py-12">
-          <div className="container mx-auto max-w-5xl px-4">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+        <div className="py-12 md:py-16">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Table of Contents - Sidebar */}
               {document?.sections && document.sections.length > 0 && (
                 <div className="lg:col-span-1">
-                  <div className="sticky top-24 rounded-xl border border-paxillin-mist/50 bg-white p-4 shadow-sm">
-                    <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-paxillin-secondary">Contents</h3>
+                  <div className="sticky top-24 pax-card p-4">
+                    <h3 className="font-semibold text-pax-navy mb-4 text-sm uppercase tracking-wide">Contents</h3>
                     <nav className="space-y-1">
                       {document.sections.map((section, index) => (
                         <a
                           key={section.id}
                           href={`#section-${index}`}
-                          className="block rounded-lg px-3 py-2 text-sm text-paxillin-ink/70 transition-colors hover:bg-paxillin-parchment/50 hover:text-paxillin-primary"
+                          className="block text-sm text-pax-slate hover:text-pax-cyan hover:bg-pax-ice px-3 py-2 rounded-lg transition-all duration-200"
                         >
                           {section.title}
                         </a>
@@ -75,12 +71,12 @@ export default async function Privacy() {
 
               {/* Main Content */}
               <div className={document?.sections && document.sections.length > 0 ? "lg:col-span-3" : "lg:col-span-4"}>
-                <div className="rounded-xl border border-paxillin-mist/50 bg-white p-6 shadow-sm md:p-10">
+                <div className="pax-card p-6 md:p-10 text-left">
                   {/* Introduction */}
                   {document?.introduction && (
-                    <div className="mb-8 rounded-xl border border-paxillin-mist/50 bg-paxillin-parchment/30 p-6">
+                    <div className="bg-pax-cloud rounded-xl p-6 mb-8 border border-pax-line">
                       <div
-                        className="prose prose-sm max-w-none leading-relaxed text-paxillin-ink/80"
+                        className="text-pax-ink leading-relaxed prose prose-sm max-w-none prose-a:text-pax-cyan prose-headings:text-pax-navy"
                         dangerouslySetInnerHTML={{ __html: document.introduction }}
                       />
                     </div>
@@ -90,37 +86,37 @@ export default async function Privacy() {
                   {document?.sections && document.sections.length > 0 ? (
                     document.sections.map((section, index) => (
                       <section key={section.id} id={`section-${index}`} className="mb-10 scroll-mt-24">
-                        <div className="mb-4 flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-paxillin-parchment/60">
-                            <Shield className="h-5 w-5 text-paxillin-primary" />
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 bg-pax-sky rounded-xl flex items-center justify-center">
+                            <Shield className="w-5 h-5 text-pax-cyan" />
                           </div>
-                          <h2 className="font-heading text-xl font-semibold text-paxillin-secondary">{section.title}</h2>
+                          <h2 className="text-xl font-bold text-pax-navy tracking-tight">{section.title}</h2>
                         </div>
-                        <div className="ml-3 border-l-2 border-paxillin-mist/60 pl-6">
+                        <div className="border-l-2 border-pax-line ml-3 pl-6">
                           <div
-                            className="prose prose-sm max-w-none leading-relaxed text-paxillin-ink/80"
+                            className="text-pax-ink leading-relaxed prose prose-sm max-w-none prose-a:text-pax-cyan prose-headings:text-pax-navy"
                             dangerouslySetInnerHTML={{ __html: section.content }}
                           />
                         </div>
                       </section>
                     ))
                   ) : (
-                    <div className="py-12 text-center">
-                      <p className="text-paxillin-ink/55">Privacy policy content is being updated. Please check back later.</p>
+                    <div className="text-center py-12">
+                      <p className="text-pax-slate">Privacy policy content is being updated. Please check back later.</p>
                     </div>
                   )}
 
                   {/* Contact Section */}
-                  <div className="mt-12 rounded-xl border border-paxillin-mist/50 bg-paxillin-parchment/30 p-6">
+                  <div className="mt-12 bg-pax-cloud rounded-2xl p-6 border border-pax-line">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-paxillin-mist/50 bg-white">
-                        <Mail className="h-6 w-6 text-paxillin-primary" />
+                      <div className="w-12 h-12 bg-pax-sky rounded-xl flex items-center justify-center">
+                        <Mail className="w-6 h-6 text-pax-cyan" />
                       </div>
                       <div>
-                        <h3 className="mb-1 font-heading font-semibold text-paxillin-secondary">Questions or concerns?</h3>
-                        <p className="text-paxillin-ink/70">
+                        <h3 className="font-semibold text-pax-navy mb-1">Questions or Concerns?</h3>
+                        <p className="text-pax-slate">
                           Have questions about this privacy policy? Reach out to us at{' '}
-                          <a href="mailto:info@paxillin.com" className="font-medium text-paxillin-primary hover:underline">
+                          <a href="mailto:info@paxillin.com" className="text-pax-cyan font-medium hover:underline">
                             info@paxillin.com
                           </a>
                         </p>

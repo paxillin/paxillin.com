@@ -11,26 +11,15 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: "2rem",
       screens: {
-        "2xl": "1200px",
+        "2xl": "1400px",
       },
     },
     extend: {
-      maxWidth: {
-        content: "var(--content-max)",
-      },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', "Times New Roman", "Georgia", "serif"],
-        heading: [
-          '"Cormorant Garamond"',
-          "Times New Roman",
-          "Georgia",
-          "serif",
-        ],
-      },
-      boxShadow: {
-        card: "0 4px 20px rgba(0, 0, 0, 0.05)",
+        sans: ['"Inter"', "system-ui", "-apple-system", "sans-serif"],
+        serif: ['"Times New Roman"', "Times", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -76,37 +65,43 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        paxillin: {
-          sage: "#769382",
-          sand: "#c8b8a4",
-          mist: "#c0c3b9",
-          parchment: "#f3efe3",
-          /* CTA / links on brand */
-          primary: "#3a7bd5",
-          /* Headlines & emphasis text */
-          secondary: "#2c3a35",
-          ink: "#2c3a35",
-          teal: "#56ccf2",
-          /* Legacy scale kept for rare use */
-          50: "#f4f7f5",
-          100: "#e8edea",
-          200: "#d0d8d2",
-          300: "#a8b5ac",
-          400: "#769382",
-          500: "#5a7568",
-          600: "#475e54",
-          700: "#3a4d45",
-          800: "#2c3a35",
-          900: "#1e2824",
+        pexilllin: {
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+          primary: "#1288B0",
+          secondary: "#193F63",
+          accent: "#8b5cf6",
+          dark: "#075985",
+        },
+        // Paxillin app design tokens (sampled from the app UI)
+        pax: {
+          navy: "#193F63", // primary buttons, headings
+          "navy-dark": "#122E49", // hover
+          cyan: "#1288B0", // brand, links, active states
+          "cyan-dark": "#0E6F90",
+          teal: "#0097A7",
+          sky: "#E0F7FA", // light-cyan chips / highlights
+          ice: "#E5F9FF", // selected-state fills
+          mist: "#EBF0F3", // app page background
+          cloud: "#F4F7F9", // section background
+          line: "#E2E8EC", // card borders
+          ink: "#0F1E2E", // primary text
+          slate: "#698299", // secondary text
+          green: "#197D00", // success
         },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        button: "var(--radius-button)",
-        card: "0.875rem",
-        "card-lg": "1rem",
       },
       keyframes: {
         "accordion-down": {
@@ -240,14 +235,6 @@ export default {
             "border-color": "currentColor",
           },
         },
-        "paxillin-logo-ramp": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "paxillin-logo-steady": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -267,15 +254,12 @@ export default {
         "fade-in-delay-1": "fade-in 0.8s ease-out 0.3s both",
         "fade-in-delay-2": "fade-in 0.8s ease-out 0.6s both",
         "fade-in-delay-3": "fade-in 0.8s ease-out 0.9s both",
-        "paxillin-logo-ramp": "paxillin-logo-ramp 2.4s ease-in forwards",
-        "paxillin-logo-steady": "paxillin-logo-steady 2s linear infinite",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-mesh": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        "paxillin-accent": "linear-gradient(120deg, #3a7bd5 0%, #6fcf97 100%)",
       },
     },
   },

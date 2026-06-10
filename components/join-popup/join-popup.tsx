@@ -1,26 +1,26 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { marketingInputErrorClasses, marketingLabelClasses } from "@/lib/form-fields";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
 
+// ModalContactForm.jsx
+// A simple, accessible popup modal with Name, Email, Phone and Submit button.
+// Styled with the Paxillin app-aligned design system tokens.
 const validatePhone = (value: string) => {
-  if (!value) return true;
+  if (!value) return true; // Phone is optional
+  // Optional +91, followed by 10 digits starting with 6-9
   const phoneRegex = /^(\+91)?[6-9]\d{9}$/;
   return phoneRegex.test(value);
 };
 
-type ModalContactFormProps = Readonly<{
+export default function ModalContactForm({
+  open,
+  onClose,
+}: {
   open: boolean;
   onClose: () => void;
-}>;
-
-export default function ModalContactForm({ open, onClose }: ModalContactFormProps) {
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -52,6 +52,7 @@ export default function ModalContactForm({ open, onClose }: ModalContactFormProp
 
   useEffect(() => {
     if (!open) {
+      // reset form when modal closes
       setName("");
       setEmail("");
       setPhone("");
@@ -67,11 +68,13 @@ export default function ModalContactForm({ open, onClose }: ModalContactFormProp
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validate required fields
     if (!name.trim() || !email.trim()) {
       setSubmitError("Name and email are required.");
       return;
     }
 
+    // Validate phone if provided
     if (phone && !validatePhone(phone)) {
       setPhoneError("Enter a valid 10-digit Indian phone number.");
       return;
@@ -100,6 +103,7 @@ export default function ModalContactForm({ open, onClose }: ModalContactFormProp
           result.message || "Thank you for joining our early access list!"
         );
         setSubmitted(true);
+        // close after 2s
         setTimeout(() => {
           setSubmitted(false);
           onClose?.();
@@ -117,91 +121,95 @@ export default function ModalContactForm({ open, onClose }: ModalContactFormProp
     }
   };
 
+  const inputClasses =
+    "mt-1.5 block w-full rounded-xl border border-pax-line bg-white px-4 py-2.5 text-sm text-pax-ink placeholder:text-pax-slate/70 outline-none transition-shadow focus:border-pax-cyan focus:ring-2 focus:ring-pax-cyan/30 disabled:opacity-50";
+
   return (
     <div
-      className="fixed inset-0 z-[10050] flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
       aria-modal="true"
       role="dialog"
       aria-labelledby="modal-title"
       aria-describedby="modal-desc"
     >
+      {/* overlay */}
       <div
-        className="absolute inset-0 bg-black/45 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-pax-ink/50 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
 
+      {/* modal panel */}
       <div
         ref={modalRef}
-        className="relative w-full max-w-md overflow-hidden rounded-2xl bg-paxillin-parchment font-montserrat shadow-2xl ring-1 ring-paxillin-mist/40"
+        className="relative w-full max-w-md rounded-2xl shadow-[0_24px_60px_rgba(15,30,46,0.25)] bg-white border border-pax-line overflow-hidden"
       >
-        <header className="flex items-center justify-between border-b border-paxillin-mist/50 px-5 py-4 sm:px-6">
-          <h2
-            id="modal-title"
-            className="font-heading text-xl font-semibold tracking-tight text-paxillin-secondary"
-          >
-            Request early access
+        {/* header */}
+        <div className="px-6 py-4 flex items-center justify-between bg-pax-navy">
+          <h2 id="modal-title" className="text-white text-lg font-semibold tracking-tight">
+            Be the First to Join Paxillin
           </h2>
           <button
-            type="button"
             onClick={onClose}
             aria-label="Close modal"
-            className="rounded-full p-2 text-paxillin-ink/55 transition-colors hover:bg-black/[0.05] hover:text-paxillin-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paxillin-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-paxillin-parchment"
+            className="rounded-full p-1.5 hover:bg-white/10 transition text-white"
           >
-            <X className="h-5 w-5" strokeWidth={2} aria-hidden />
+            ✕
           </button>
-        </header>
+        </div>
 
-        <div className="px-5 py-6 text-left sm:px-6" id="modal-desc">
+        {/* body / form */}
+        <div className="px-6 py-6 text-left">
           {submitted ? (
-            <p className="text-center font-serif text-base font-medium leading-relaxed text-paxillin-secondary">
+            <p className="text-center text-lg font-medium text-pax-green">
               {successMessage}
             </p>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="text-left"
+              id="modal-desc"
+            >
               {submitError && (
-                <div
-                  className="rounded-xl border border-red-200 bg-red-50/90 px-3 py-2.5 text-sm text-red-800"
-                  role="alert"
-                >
+                <div className="mb-4 p-3 rounded-xl bg-red-50 text-red-700 border border-red-200 text-sm">
                   {submitError}
                 </div>
               )}
 
-              <label className="block text-left">
-                <span className={marketingLabelClasses}>
+              <label className="block mb-4 text-left">
+                <span className="block text-sm font-medium text-pax-ink">
                   Name <span className="text-red-500">*</span>
                 </span>
-                <Input
-                  variant="marketing"
+                <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your full name"
                   disabled={isSubmitting}
                   required
+                  className={inputClasses}
                 />
               </label>
 
-              <label className="block text-left">
-                <span className={marketingLabelClasses}>
+              <label className="block mb-4 text-left">
+                <span className="block text-sm font-medium text-pax-ink">
                   Email <span className="text-red-500">*</span>
                 </span>
-                <Input
-                  variant="marketing"
-                  type="email"
+                <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
+                  type="email"
                   disabled={isSubmitting}
                   required
+                  className={inputClasses}
                 />
               </label>
 
-              <label className="block text-left">
-                <span className={marketingLabelClasses}>Phone (optional)</span>
-                <Input
-                  variant="marketing"
-                  type="tel"
+              <label className="block mb-6 text-left">
+                <span className="block text-sm font-medium text-pax-ink">
+                  Phone (optional)
+                </span>
+                <input
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
@@ -214,27 +222,35 @@ export default function ModalContactForm({ open, onClose }: ModalContactFormProp
                     }
                   }}
                   placeholder="+91 98765 43210"
+                  type="tel"
                   disabled={isSubmitting}
-                  className={cn(phoneError && marketingInputErrorClasses)}
+                  className={`${inputClasses} ${phoneError
+                    ? "!border-red-500 focus:!ring-red-500/30"
+                    : ""
+                    }`}
                 />
                 {phoneError && (
-                  <p className="mt-1.5 text-sm text-red-600">{phoneError}</p>
+                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
                 )}
               </label>
 
-              <div className="pt-1">
-                <Button
+              <div className="flex items-center justify-between gap-3">
+                <button
                   type="submit"
-                  variant="cta"
-                  size="default"
                   disabled={isSubmitting}
-                  className="h-11 min-h-11 w-full justify-center px-5 text-sm shadow-md gap-1.5"
+                  className="pax-btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
-                  {!isSubmitting && (
-                    <ArrowRight className="opacity-95" strokeWidth={2} aria-hidden />
-                  )}
-                </Button>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onClose}
+                  disabled={isSubmitting}
+                  className="pax-btn-outline disabled:opacity-50"
+                >
+                  Cancel
+                </button>
               </div>
             </form>
           )}

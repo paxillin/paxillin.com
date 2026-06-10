@@ -1,92 +1,145 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Mail, MessageCircle, Clock } from "lucide-react";
+import { useState } from "react";
+import FeedbackForm from "@/components/forms/FeedbackForm";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Clock,
+  MessageCircle,
+  User,
+  Building,
+} from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageLayout from "@/components/layout/PageLayout";
-import FeedbackForm from "@/components/forms/FeedbackForm";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    organization: "",
+    subject: "",
+    message: "",
+  });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    toast({
+      title: "Message Sent!",
+      description:
+        "Thank you for contacting us. We'll get back to you within 24 hours.",
+    });
+
+    setFormData({
+      name: "",
+      email: "",
+      organization: "",
+      subject: "",
+      message: "",
+    });
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email support",
+      title: "Email Support",
       details: "support@paxillin.com",
       description: "For general inquiries and support",
     },
     {
       icon: MessageCircle,
-      title: "Partnership inquiries",
+      title: "Partnership Inquiries",
       details: "info@paxillin.com",
       description: "For healthcare organizations and institutions",
     },
     {
       icon: Clock,
-      title: "Response time",
+      title: "Response Time",
       details: "Within 24 hours",
       description: "We aim to respond to all inquiries promptly",
+    },
+    // {
+    //   icon: MapPin,
+    //   title: "Headquarters",
+    //   details: "Global Remote Team",
+    //   description: "Serving healthcare Professional and Socials worldwide"
+    // }
+  ];
+
+  const inquiryTypes = [
+    {
+      icon: User,
+      title: "General Support",
+      description: "Questions about using Paxillin",
+    },
+    // {
+    //   icon: Building,
+    //   title: "Institutional Partnerships",
+    //   description: "Hospital systems, medical schools, and healthcare organizations"
+    // },
+    {
+      icon: MessageCircle,
+      title: "Beta Testing",
+      description: "Join our testing program or provide feedback",
     },
   ];
 
   return (
     <PageLayout>
-      <div className="min-h-screen bg-white font-sans antialiased">
+      <div className="min-h-screen bg-white">
         <Header />
 
-        <section className="px-4 pb-12 pt-16">
-          <div className="container mx-auto text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 border border-paxillin-mist/50 bg-white/90 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-paxillin-ink/55"
-            >
-              Contact
-            </Badge>
-            <h1 className="mb-6 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-paxillin-secondary md:mb-8 md:text-6xl md:leading-[1.08]">
-              We are here to
-              <span className="mt-1 block text-paxillin-secondary md:mt-2">help</span>
-            </h1>
-            <p className="mx-auto max-w-2xl text-base font-normal leading-relaxed text-paxillin-ink/65 md:text-lg">
-              Reach out for support, partnerships, or general questions. We work with
-              healthcare professionals and organizations who want meaningful,
-              secure collaboration.
+        {/* Hero Section */}
+        <section className="bg-pax-cloud border-b border-pax-line">
+          <div className="container mx-auto px-4 py-16 md:py-20 text-center">
+            <span className="pax-chip mb-5">We&apos;re Here to Help</span>
+            <h1 className="pax-section-title mb-4">Contact Us</h1>
+            <p className="pax-section-sub max-w-3xl mx-auto leading-relaxed">
+              We&apos;re here to help healthcare professionals and organizations
+              to connect , collaborate and have meaningful engagement. Reach out
+              to us for support, partnerships, or general inquiries.
             </p>
           </div>
         </section>
 
-        <section className="px-4 pb-16">
-          <div className="container mx-auto">
-            <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Contact Information */}
+        <section className="py-16 md:py-20">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {contactInfo.map((info) => (
-                <Card
-                  key={info.title}
-                  className="rounded-2xl border border-paxillin-mist/50 bg-white shadow-card transition-shadow hover:shadow-md"
-                >
-                  <CardContent className="p-6 text-center">
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-paxillin-mist/60 bg-paxillin-parchment/50">
-                      <info.icon className="h-7 w-7 text-paxillin-secondary" />
-                    </div>
-                    <h3 className="font-heading text-lg font-semibold text-paxillin-secondary">
-                      {info.title}
-                    </h3>
-                    <p className="mt-2 text-base font-medium text-paxillin-secondary">
-                      {info.details}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-paxillin-ink/65">
-                      {info.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <div key={info.title} className="pax-card p-8 text-center">
+                  <div className="w-12 h-12 bg-pax-sky rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <info.icon className="h-6 w-6 text-pax-cyan" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-pax-ink mb-2">
+                    {info.title}
+                  </h3>
+                  <p className="text-base text-pax-cyan font-semibold mb-2">
+                    {info.details}
+                  </p>
+                  <p className="text-sm text-pax-slate">{info.description}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-t border-paxillin-mist/40 bg-paxillin-parchment/20 px-4 py-12">
-          <div className="container mx-auto">
-            <FeedbackForm />
-          </div>
+        <section className="pb-16 md:pb-20 bg-white">
+          <FeedbackForm />
         </section>
 
         <Footer />
