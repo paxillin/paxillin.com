@@ -14,19 +14,6 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </div>
 
-      {/* Desktop Fixed Button (only show when modal is closed) */}
-      {!open && (
-        <div className="fixed bottom-6 right-6 z-[9999] hidden md:block font-sans">
-          <Button
-            size="lg"
-            className="bg-pax-navy hover:bg-pax-navy-dark text-white text-lg px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
-            onClick={() => setOpen(true)}
-          >
-            Join Early Access
-          </Button>
-        </div>
-      )}
-
       {/* Mobile Full-Width Bottom Button (only show when modal is closed) */}
       {!open && (
         <div className="md:hidden px-4 py-4 fixed bottom-0 w-full z-[9999]">

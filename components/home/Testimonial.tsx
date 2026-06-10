@@ -95,11 +95,17 @@ const Testimonial: React.FC = () => {
                 : "opacity-0 absolute inset-0"
             } flex flex-col items-center text-center pax-card p-8 h-full`}
           >
-            <img
-              src={testimonial.image}
-              alt={testimonial.name}
-              className="w-20 h-20 rounded-full mb-4 object-cover"
-            />
+            <div
+              aria-hidden="true"
+              className="w-20 h-20 rounded-full mb-4 bg-pax-sky text-pax-navy flex items-center justify-center text-2xl font-bold"
+            >
+              {testimonial.name
+                .replace(/^Dr\.?\s*/i, "")
+                .split(" ")
+                .map((w) => w[0])
+                .slice(0, 2)
+                .join("")}
+            </div>
             <h3 className="text-xl font-semibold text-pax-ink">
               {testimonial.name}
             </h3>
