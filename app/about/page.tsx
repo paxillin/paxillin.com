@@ -184,20 +184,17 @@ const faqs = [
 
   return (
     <PageLayout>
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans">
+    <div className="min-h-screen bg-white font-sans">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-16 pb-16 px-4">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold block text-transparent bg-clip-text bg-gradient-to-r from-[#0f2c4d] via-[#165176] to-[#3CAFE6]
-
-c mb-8">
-            About <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0f2c4d] via-[#165176] to-[#3CAFE6]
-
-s">Paxillin</span>
+      <section className="bg-pax-cloud border-b border-pax-line">
+        <div className="container mx-auto px-4 py-16 md:py-20 text-center">
+          <span className="pax-chip mb-5">Who We Are</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-pax-navy tracking-tight leading-[1.1] mb-6">
+            About Paxillin
           </h1>
-          <p className="text-lg md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-pax-slate max-w-3xl mx-auto leading-relaxed">
            {/* We're on a mission to transform healthcare through meaningful professional and social connections. Paxillin bridges the gap between medical professionals and the broader community, fostering collaboration that advances patient care and drives medical innovation. */}
 
 
@@ -208,18 +205,20 @@ s">Paxillin</span>
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 px-4 bg-white/70 backdrop-blur-sm">
+      <section className="py-16 md:py-20 px-4">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <Card className="p-6 md:p-8 border-0 shadow-xl bg-gradient-to-br from-blue-50 to-blue-100">
-              <CardContent className="p-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            <div className="pax-card p-6 md:p-8">
+              <div>
                 <div className="flex text-left items-center mb-6">
-                  <Target className="h-12  w-12 text-pexilllin-primary mr-4" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  <div className="w-12 h-12 rounded-xl bg-pax-sky flex items-center justify-center mr-4 shrink-0">
+                    <Target className="h-6 w-6 text-pax-cyan" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-pax-navy tracking-tight">
                     Our Mission
                   </h2>
                 </div>
-                <p className="md:text-lg text-gray-700 text-left leading-relaxed">
+                <p className="md:text-lg text-pax-slate text-left leading-relaxed">
                   {/* To create the Life Guardian's ecosystem, Paxillin focuses on
                   three pillars: Connection — whether near or
                   far, connect wherever you are. Integration —
@@ -228,30 +227,28 @@ s">Paxillin</span>
                   network and join the movement driving healthcare innovation. */}
                   Paxillin empowers India’s doctors to forge seamless connections and share expertise, laying the foundation for a doctor-led healthcare ecosystem. By uniting medical professionals nationwide, we foster collaboration and professional growth, enabling every healthcare professional to thrive in a dynamic network.
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-emerald-50 to-emerald-100">
-              <CardContent className="p-0">
+            <div className="pax-card p-6 md:p-8">
+              <div>
                 <div className="flex items-center mb-6">
-                  <Award className="h-12 w-12 text-emerald-600 mr-4" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  <div className="w-12 h-12 rounded-xl bg-pax-sky flex items-center justify-center mr-4 shrink-0">
+                    <Award className="h-6 w-6 text-pax-cyan" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-pax-navy tracking-tight">
                     Our Vision
                   </h2>
                 </div>
-                <p className="md:text-lg text-gray-700 text-left  leading-relaxed">
+                <p className="md:text-lg text-pax-slate text-left leading-relaxed">
                   {/* A world where every healthcare Professional and Social has
                   access to a national network of peers, enabling rapid
                   knowledge transfer and continuous Professional and Social
                   development. */}
                   To be India’s leading platform for doctors, revolutionizing how medical professionals connect, collaborate, and innovate. We envision a future where every healthcare professional in India is empowered by a unified, dynamic network that drives excellence and shapes the future of healthcare collaboration.
-
-
-
-
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -296,40 +293,33 @@ s">Paxillin</span>
       </section> */}
 
       {/* Company Timeline */}
-      <section className="py-16 px-4 bg-gradient-to-br from-blue-50 to-emerald-50">
+      <section className="py-16 md:py-20 px-4 bg-pax-cloud">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
-              Our Journey
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              From concept to revolutionizing professional and social  networking
-
-
+          <div className="text-center mb-12">
+            <h2 className="pax-section-title mb-3">Our Journey</h2>
+            <p className="pax-section-sub max-w-3xl mx-auto">
+              From concept to revolutionizing professional and social networking
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto relative">
+            {/* Vertical line */}
+            <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-pax-line"></div>
+
             {milestones.map((milestone, index) => (
               <div
                 key={milestone.year}
-                className="flex flex-col md:flex-row items-start mb-12 last:mb-0"
+                className="relative pl-10 mb-8 last:mb-0"
               >
-                <div className="flex-shrink-0 w-full md:w-24 text-center md:text-right mr-8">
-                  <span className="text-2xl font-bold text-pexilllin-primary">
-                    {milestone.year}
-                  </span>
-                </div>
-                <div className="hidden md:block flex-shrink-0 w-4 h-4 bg-pexilllin-primary rounded-full mt-2 mr-8 relative">
-                  {index < milestones.length - 1 && (
-                    <div className="absolute top-4 left-1/2 w-0.5 md:h-24 bg-blue-300 transform -translate-x-1/2"></div>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                {/* Dot */}
+                <div className="absolute left-0 top-6 w-4 h-4 rounded-full bg-pax-cyan ring-4 ring-pax-sky z-10"></div>
+
+                <div className="pax-card p-6 text-left">
+                  <span className="pax-chip mb-3">{milestone.year}</span>
+                  <h3 className="text-xl font-bold text-pax-ink mb-2">
                     {milestone.title}
                   </h3>
-                  <p className="text-base md:text-base text-gray-600">
+                  <p className="text-sm md:text-base text-pax-slate leading-relaxed">
                     {milestone.description}
                   </p>
                 </div>
@@ -531,29 +521,23 @@ s">Paxillin</span>
       </section> */}
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-white/70 backdrop-blur-sm">
+      <section className="py-16 md:py-20 px-4 bg-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="pax-section-title mb-4">
             Join the Future of Healthcare Networking
           </h2>
-          <p className="md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-           Be part of a platform designed by IT Professionals - for Healthcare Professionals and Organizations.
+          <p className="pax-section-sub mb-8 max-w-3xl mx-auto">
+            Be part of a platform designed by IT Professionals - for Healthcare
+            Professionals and Organizations.
           </p>
-         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-  <Link
-    href="/features"
-    className="bg-pexilllin-primary text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:shadow-lg"
-  >
-    Explore Features
-  </Link>
-  <Link
-    href="/release"
-    className="border-2 border-pexilllin-primary text-pexilllin-primary hover:bg-pexilllin-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300"
-  >
-    View Release Timeline
-  </Link>
-</div>
-
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Link href="/features" className="pax-btn-primary !px-8">
+              Explore Features
+            </Link>
+            <Link href="/release" className="pax-btn-outline !px-8">
+              View Release Timeline
+            </Link>
+          </div>
         </div>
       </section>
 

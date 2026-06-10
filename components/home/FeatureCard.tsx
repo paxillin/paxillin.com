@@ -1,44 +1,25 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { LucideIcon } from "lucide-react";
-
 interface FeatureCardProps {
   icon: string;
   title: string;
   description: string;
-  color: string;
+  color?: string;
   delay?: number;
 }
 
-const FeatureCard = ({
-  icon: Icon,
-  title,
-  description,
-  color,
-  delay = 0,
-}: FeatureCardProps) => {
+const FeatureCard = ({ icon, title, description, delay = 0 }: FeatureCardProps) => {
   return (
-    <Card
-      className="group  transition-all duration-500 transform  border-2 bg-white/70 backdrop-blur-sm animate-fade-in border-pexilllin-primary rounded-lg"
+    <div
+      className="pax-card p-6 text-left animate-fade-in transition-shadow duration-300 hover:shadow-[0_8px_24px_rgba(25,63,99,0.10)]"
       style={{ animationDelay: `${delay}s` }}
     >
-      <CardContent className="p-8">
-        <div
-          className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6  transition-transform duration-300 mx-auto`}
-        >
-           <img src={Icon} alt={title} className="h-8 w-8" />
-        </div>
+      <div className="w-12 h-12 rounded-xl bg-pax-sky flex items-center justify-center mb-4">
+        <img src={icon} alt="" aria-hidden="true" className="h-6 w-6" />
+      </div>
 
-        <h3 className="text-xl font-bold mb-4 text-center text-pexilllin-primary transition-colors duration-300">
-          {title}
-        </h3>
+      <h3 className="text-lg font-semibold mb-2 text-pax-ink">{title}</h3>
 
-        <p className="text-gray-600 px-2  leading-relaxed text-center text-base max-w-xs mx-auto">
-          {description}
-        </p>
-
-        <div className="mt-6 w-12 h-1 bg-pexilllin-primary rounded-full opacity-0  transition-opacity duration-300"></div>
-      </CardContent>
-    </Card>
+      <p className="text-sm text-pax-slate leading-relaxed">{description}</p>
+    </div>
   );
 };
 

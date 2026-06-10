@@ -58,38 +58,37 @@ const FAQSection = () => {
   return (
     <section id="faq" className="py-20 px-4 ">
       <div className="mx-auto max-w-4xl px-4">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-lg text-gray-600">
+        <div className="text-center mb-10">
+          <h2 className="pax-section-title mb-2">Frequently Asked Questions</h2>
+          <p className="pax-section-sub">
             Everything you need to know about Paxillin
           </p>
         </div>
-        
-        <div className="space-y-4">
+
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
-            <Card key={index} className="border border-gray-400 transition-shadow duration-300 rounded-lg">
+            <Card
+              key={index}
+              className="pax-card !rounded-2xl overflow-hidden transition-shadow duration-300"
+            >
               <CardContent className="p-0">
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+                  className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-pax-cloud transition-colors duration-200"
                 >
-                <h3 className="text-base md:text-lg font-medium text-gray-800 leading-snug pr-8">
-
-
+                  <h3 className="text-base font-semibold text-pax-ink leading-snug pr-8">
                     {faq.question}
                   </h3>
                   {openFAQ === index ? (
-                    <ChevronUp className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    <ChevronUp className="h-5 w-5 text-pax-cyan flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    <ChevronDown className="h-5 w-5 text-pax-slate flex-shrink-0" />
                   )}
                 </button>
-                
+
                 {openFAQ === index && (
                   <div className="px-6 pb-6">
-                    <p className="text-gray-600 leading-relaxed text-left">
+                    <p className="text-sm text-pax-slate leading-relaxed text-left">
                       {faq.answer}
                     </p>
                   </div>
@@ -98,16 +97,14 @@ const FAQSection = () => {
             </Card>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">
-           Still have questions?
-          </p>
-          <a 
-            href="mailto:support@Paxillin.com" 
-            className="text-pexilllin-primary font-semibold"
+          <p className="text-pax-slate mb-3">Still have questions?</p>
+          <a
+            href="mailto:support@Paxillin.com"
+            className="text-pax-cyan font-semibold hover:underline"
           >
-           Contact our support team.
+            Contact our support team.
           </a>
         </div>
       </div>

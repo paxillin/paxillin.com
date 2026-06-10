@@ -19,7 +19,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="fixed bottom-6 right-6 z-[9999] hidden md:block font-sans">
           <Button
             size="lg"
-            className="bg-pexilllin-primary hover:bg-pexilllin-primary text-white text-lg px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-md"
+            className="bg-pax-navy hover:bg-pax-navy-dark text-white text-lg px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
             onClick={() => setOpen(true)}
           >
             Join Early Access
@@ -33,7 +33,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
           <Button
             onClick={() => setOpen(true)}
             size="lg"
-            className="bg-pexilllin-primary hover:bg-pexilllin-primary text-white w-full text-lg font-semibold transition-all duration-300 rounded-full shadow-md"
+            className="bg-pax-navy hover:bg-pax-navy-dark text-white w-full text-lg font-semibold transition-all duration-300 rounded-full shadow-lg"
           >
             Join Early Access
           </Button>

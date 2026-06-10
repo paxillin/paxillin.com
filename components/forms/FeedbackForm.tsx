@@ -69,96 +69,101 @@ const FeedbackForm = () => {
     }
   };
 
+  const inputClasses =
+    "w-full rounded-xl border border-pax-line bg-white px-4 py-2.5 text-sm text-pax-ink placeholder:text-pax-slate/70 outline-none transition-shadow focus:border-pax-cyan focus:ring-2 focus:ring-pax-cyan/30 disabled:opacity-50";
+
   return (
-    <div className="py-4 max-w-6xl px-6 md:p-10 bg-white flex flex-col md:flex-row items-center justify-center mx-auto gap-10">
-      <div className="w-full md:w-[50%]">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="text-2xl text-left md:text-center font-bold mb-6 text-pexilllin-secondary">
-            Feedback Form
-          </h2>
+    <div className="container mx-auto px-4 max-w-5xl">
+      <div className="pax-card p-6 md:p-10 flex flex-col md:flex-row items-center justify-center gap-10">
+        <div className="w-full md:w-[50%]">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h2 className="text-2xl text-left md:text-center font-bold mb-6 text-pax-navy tracking-tight">
+              Feedback Form
+            </h2>
 
-          {submitStatus && (
-            <div
-              className={`mb-4 p-3 rounded ${submitStatus.type === "success"
-                ? "bg-green-100 text-green-700 border border-green-300"
-                : "bg-red-100 text-red-700 border border-red-300"
-                }`}
-            >
-              {submitStatus.message}
-            </div>
-          )}
-
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="mb-4">
-              <label className="block text-left text-sm font-medium mb-1">
-                Full Name
-              </label>
-              <input
-                type="text"
-                {...register("fullName")}
-                placeholder="Your name"
-                className="w-full p-2 border rounded"
-                disabled={isSubmitting}
-              />
-              {errors.fullName?.message && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors?.fullName?.message}
-                </p>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-left text-sm font-medium mb-1">
-                Email Address
-              </label>
-              <input
-                type="email"
-                {...register("email")}
-                placeholder="you@example.com"
-                className="w-full p-2 border rounded"
-                disabled={isSubmitting}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-left text-sm font-medium mb-1">
-              Your Message
-            </label>
-            <textarea
-              {...register("message")}
-              rows={4}
-              placeholder="Share your thoughts..."
-              className="w-full p-2 border rounded"
-              disabled={isSubmitting}
-            ></textarea>
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.message.message}
-              </p>
+            {submitStatus && (
+              <div
+                className={`mb-4 p-3 rounded-xl text-sm border ${submitStatus.type === "success"
+                  ? "bg-pax-ice text-pax-green border-pax-line"
+                  : "bg-red-50 text-red-700 border-red-200"
+                  }`}
+              >
+                {submitStatus.message}
+              </div>
             )}
-          </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-pexilllin-primary text-white p-3 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? "Submitting..." : "Submit Feedback"}
-          </button>
-        </form>
-      </div>
-      <div className="w-full md:w-[50%]">
-        <img
-          src={FeedbackFormImg}
-          alt="Feedback Illustration"
-          className="w-full h-[200px] md:h-[400px] mt-6 rounded-lg object-cover"
-        />
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div className="mb-4">
+                <label className="block text-left text-sm font-medium mb-1.5 text-pax-ink">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  {...register("fullName")}
+                  placeholder="Your name"
+                  className={inputClasses}
+                  disabled={isSubmitting}
+                />
+                {errors.fullName?.message && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors?.fullName?.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-left text-sm font-medium mb-1.5 text-pax-ink">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  {...register("email")}
+                  placeholder="you@example.com"
+                  className={inputClasses}
+                  disabled={isSubmitting}
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-left text-sm font-medium mb-1.5 text-pax-ink">
+                Your Message
+              </label>
+              <textarea
+                {...register("message")}
+                rows={4}
+                placeholder="Share your thoughts..."
+                className={inputClasses}
+                disabled={isSubmitting}
+              ></textarea>
+              {errors.message && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.message.message}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="pax-btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Submitting..." : "Submit Feedback"}
+            </button>
+          </form>
+        </div>
+        <div className="w-full md:w-[50%]">
+          <img
+            src={FeedbackFormImg}
+            alt="Feedback Illustration"
+            className="w-full h-[200px] md:h-[400px] rounded-2xl border border-pax-line object-cover"
+          />
+        </div>
       </div>
     </div>
   );

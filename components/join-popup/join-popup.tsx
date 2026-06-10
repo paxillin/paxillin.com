@@ -6,7 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
 
 // ModalContactForm.jsx
 // A simple, accessible popup modal with Name, Email, Phone and Submit button.
-// Uses Tailwind CSS classes (pexilllin-primary & pexilllin-secondary).
+// Styled with the Paxillin app-aligned design system tokens.
 const validatePhone = (value: string) => {
   if (!value) return true; // Phone is optional
   // Optional +91, followed by 10 digits starting with 6-9
@@ -121,6 +121,9 @@ export default function ModalContactForm({
     }
   };
 
+  const inputClasses =
+    "mt-1.5 block w-full rounded-xl border border-pax-line bg-white px-4 py-2.5 text-sm text-pax-ink placeholder:text-pax-slate/70 outline-none transition-shadow focus:border-pax-cyan focus:ring-2 focus:ring-pax-cyan/30 disabled:opacity-50";
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -131,7 +134,7 @@ export default function ModalContactForm({
     >
       {/* overlay */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-pax-ink/50 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -139,17 +142,17 @@ export default function ModalContactForm({
       {/* modal panel */}
       <div
         ref={modalRef}
-        className="relative w-full max-w-md rounded-2xl shadow-2xl bg-white ring-1 ring-black/5 overflow-hidden"
+        className="relative w-full max-w-md rounded-2xl shadow-[0_24px_60px_rgba(15,30,46,0.25)] bg-white border border-pax-line overflow-hidden"
       >
         {/* header */}
-        <div className="px-6 py-4 flex items-center justify-between bg-gradient-to-r from-pexilllin-primary to-pexilllin-secondary">
-          <h2 id="modal-title" className="text-white text-lg font-semibold">
+        <div className="px-6 py-4 flex items-center justify-between bg-pax-navy">
+          <h2 id="modal-title" className="text-white text-lg font-semibold tracking-tight">
             Be the First to Join Paxillin
           </h2>
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="rounded-md p-1 hover:bg-white/10 transition text-white"
+            className="rounded-full p-1.5 hover:bg-white/10 transition text-white"
           >
             ✕
           </button>
@@ -158,23 +161,23 @@ export default function ModalContactForm({
         {/* body / form */}
         <div className="px-6 py-6 text-left">
           {submitted ? (
-            <p className="text-center text-lg font-medium text-pexilllin-primary">
+            <p className="text-center text-lg font-medium text-pax-green">
               {successMessage}
             </p>
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="px-6 py-6 text-left"
+              className="text-left"
               id="modal-desc"
             >
               {submitError && (
-                <div className="mb-4 p-3 rounded bg-red-100 text-red-700 border border-red-300 text-sm">
+                <div className="mb-4 p-3 rounded-xl bg-red-50 text-red-700 border border-red-200 text-sm">
                   {submitError}
                 </div>
               )}
 
               <label className="block mb-4 text-left">
-                <span className="block text-sm font-medium text-slate-700">
+                <span className="block text-sm font-medium text-pax-ink">
                   Name <span className="text-red-500">*</span>
                 </span>
                 <input
@@ -183,12 +186,12 @@ export default function ModalContactForm({
                   placeholder="Your full name"
                   disabled={isSubmitting}
                   required
-                  className="mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 border-gray-200 disabled:opacity-50"
+                  className={inputClasses}
                 />
               </label>
 
               <label className="block mb-4 text-left">
-                <span className="block text-sm font-medium text-slate-700">
+                <span className="block text-sm font-medium text-pax-ink">
                   Email <span className="text-red-500">*</span>
                 </span>
                 <input
@@ -198,12 +201,12 @@ export default function ModalContactForm({
                   type="email"
                   disabled={isSubmitting}
                   required
-                  className="mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 border-gray-200 disabled:opacity-50"
+                  className={inputClasses}
                 />
               </label>
 
               <label className="block mb-6 text-left">
-                <span className="block text-sm font-medium text-slate-700">
+                <span className="block text-sm font-medium text-pax-ink">
                   Phone (optional)
                 </span>
                 <input
@@ -221,9 +224,9 @@ export default function ModalContactForm({
                   placeholder="+91 98765 43210"
                   type="tel"
                   disabled={isSubmitting}
-                  className={`mt-1 block w-full rounded-lg border px-3 py-2 text-sm outline-none transition-shadow focus:ring-2 disabled:opacity-50 ${phoneError
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-200 focus:ring-pexilllin-primary"
+                  className={`${inputClasses} ${phoneError
+                    ? "!border-red-500 focus:!ring-red-500/30"
+                    : ""
                     }`}
                 />
                 {phoneError && (
@@ -235,7 +238,7 @@ export default function ModalContactForm({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 bg-pexilllin-primary text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="pax-btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
@@ -244,18 +247,11 @@ export default function ModalContactForm({
                   type="button"
                   onClick={onClose}
                   disabled={isSubmitting}
-                  className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium border border-gray-200 bg-white disabled:opacity-50"
+                  className="pax-btn-outline disabled:opacity-50"
                 >
                   Cancel
                 </button>
               </div>
-
-              <style>{`
-            input:focus {
-              box-shadow: 0 0 0 4px rgba(19,141,182,0.12);
-              border-color: var(--color-pexilllin-secondary) !important;
-            }
-          `}</style>
             </form>
           )}
         </div>

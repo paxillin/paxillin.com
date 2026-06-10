@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
 
@@ -101,7 +102,39 @@
   body {
     @apply bg-background text-foreground;
     margin: 0 auto;
-    text-align: center;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ---- Paxillin app-aligned design system ---- */
+@layer components {
+  /* White card, like app feed cards */
+  .pax-card {
+    @apply bg-white rounded-2xl border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)];
+  }
+
+  /* Primary navy pill button (app "Applied" style) */
+  .pax-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-pax-navy text-white font-semibold px-6 py-3 text-sm transition-colors hover:bg-pax-navy-dark;
+  }
+
+  /* Outline cyan pill button (app "Share" style) */
+  .pax-btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-pax-cyan text-pax-cyan font-semibold px-6 py-3 text-sm transition-colors hover:bg-pax-ice;
+  }
+
+  /* Light-cyan chip (app salary/tag style) */
+  .pax-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-pax-sky text-pax-cyan font-medium px-3 py-1 text-xs;
+  }
+
+  .pax-section-title {
+    @apply text-3xl md:text-4xl font-bold text-pax-navy tracking-tight;
+  }
+
+  .pax-section-sub {
+    @apply text-base md:text-lg text-pax-slate;
   }
 }
 

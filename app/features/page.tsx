@@ -1,7 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { CheckCircle } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -23,7 +21,6 @@ const Features = () => {
         "Promote or participate in regional events and initiatives",
       ],
       mockupFeature: "Interactive location-switch interface",
-      color: "text-blue-600",
     },
     {
       icon: "/icons/members.png",
@@ -39,7 +36,6 @@ const Features = () => {
         "Filter by specialty, location, or institution",
       ],
       mockupFeature: "Searchable doctor directory UI",
-      color: "text-green-600",
     },
     {
       icon: "/icons/event.png",
@@ -55,7 +51,6 @@ const Features = () => {
         "Promote events within specific specialties or geographic regions",
       ],
       mockupFeature: "Event creation flow and invite system",
-      color: "text-purple-600",
     },
     {
       icon: "/icons/community.png",
@@ -71,7 +66,6 @@ const Features = () => {
         "Invite members via public or private links",
       ],
       mockupFeature: "Community setup interface",
-      color: "text-blue-600",
     },
     {
       icon: "/icons/group.png",
@@ -87,7 +81,6 @@ const Features = () => {
         "Persistent chat and activity feed for ongoing engagement",
       ],
       mockupFeature: "Group chat and dashboard UI",
-      color: "text-emerald-600",
     },
     {
       icon: "/icons/content.png",
@@ -103,7 +96,6 @@ const Features = () => {
         "Engage with posts through comments and reactions",
       ],
       mockupFeature: "Curated content feed UI",
-      color: "text-purple-600",
     },
     {
       icon: "/icons/analytics.png",
@@ -119,7 +111,6 @@ const Features = () => {
         "Understand network growth over time",
       ],
       mockupFeature: "Analytics dashboard visualization",
-      color: "text-purple-600",
     },
     {
       icon: "/icons/encrypted.png",
@@ -135,31 +126,23 @@ const Features = () => {
         "Peace of mind for sensitive discussions",
       ],
       mockupFeature: "Encrypted chat and call interface",
-      color: "text-purple-600",
     },
   ];
 
   return (
     <PageLayout>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans">
+      <div className="min-h-screen bg-white font-sans">
         <Header />
 
         {/* Hero Section */}
-        <section className="pt-16 pb-16 px-0.4">
-          <div className="container mx-auto text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 px-6 py-3 text-base font-semibold bg-[rgb(226,248,255)] text-pexilllin-primary border-0"
-            >
-              Complete Feature Overview
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8">
+        <section className="bg-pax-cloud border-b border-pax-line">
+          <div className="container mx-auto px-4 py-16 md:py-20 text-center">
+            <span className="pax-chip mb-5">Complete Feature Overview</span>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-pax-navy tracking-tight leading-[1.1] mb-6">
               Powerful Features for
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0f2c4d] via-[#165176] to-[#3CAFE6]">
-                Healthcare Professionals
-              </span>
+              <span className="block">Healthcare Professionals</span>
             </h1>
-            <p className="text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto mb-6 leading-relaxed">
+            <p className="text-lg md:text-xl text-pax-slate max-w-3xl mx-auto leading-relaxed">
               Paxillin delivers powerful features tailored for healthcare
               professionals, making it easier to connect, collaborate, and share
               across the healthcare ecosystem.
@@ -168,9 +151,9 @@ const Features = () => {
         </section>
 
         {/* Features Section */}
-        <section className="pb-16 px-4">
+        <section className="py-16 md:py-20 px-4">
           <div className="container mx-auto">
-            <div className="space-y-24">
+            <div className="space-y-20 md:space-y-24">
               {features.map((feature, index) => (
                 <div
                   key={feature.title}
@@ -183,15 +166,15 @@ const Features = () => {
                   <div className="w-full lg:w-1/2 flex justify-center">
                     <div className="relative">
                       {/* Phone Frame */}
-                      <div className="w-80 h-[640px] bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] p-2 shadow-2xl">
+                      <div className="w-80 h-[640px] bg-pax-navy rounded-[3rem] p-2 shadow-[0_16px_40px_rgba(25,63,99,0.18)]">
                         <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
                           {/* Phone Screen Content */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 flex flex-col">
+                          <div className="absolute inset-0 bg-pax-cloud p-6 flex flex-col">
                             {/* Status Bar */}
-                            <div className="flex justify-between items-center text-xs text-gray-600 mb-4">
+                            <div className="flex justify-between items-center text-xs text-pax-slate mb-4">
                               <span>9:41</span>
                               <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
+                                <div className="w-4 h-2 bg-pax-green rounded-sm"></div>
                                 <span>100%</span>
                               </div>
                             </div>
@@ -203,13 +186,13 @@ const Features = () => {
                                 alt="paxillin"
                                 className="w-8 h-8"
                               />
-                              <span className="text-lg font-bold text-pexilllin-primary">
+                              <span className="text-lg font-bold text-pax-navy">
                                 Paxillin
                               </span>
                             </div>
 
                             {/* Feature Icon */}
-                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-emerald-100 flex items-center justify-center mb-4 mx-auto">
+                            <div className="w-16 h-16 rounded-2xl bg-pax-sky flex items-center justify-center mb-4 mx-auto">
                               <img
                                 src={feature.icon}
                                 alt={feature.title}
@@ -218,20 +201,20 @@ const Features = () => {
                             </div>
 
                             {/* Feature Title in Mockup */}
-                            <h3 className="text-center text-lg font-bold text-gray-900 mb-2">
+                            <h3 className="text-center text-lg font-bold text-pax-ink mb-2">
                               {feature.title}
                             </h3>
 
                             {/* Mockup Feature Description */}
-                            <p className="text-center text-sm text-gray-600 mb-4">
+                            <p className="text-center text-sm text-pax-slate mb-4">
                               {feature.mockupFeature}
                             </p>
 
                             {/* Mock Interface Elements */}
                             <div className="flex-1 space-y-3">
-                              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100">
+                              <div className="bg-white rounded-xl p-3 border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)]">
                                 <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                  <div className="w-10 h-10 bg-pax-sky rounded-full flex items-center justify-center">
                                     <img
                                       src={feature.icon}
                                       alt={feature.title}
@@ -239,31 +222,31 @@ const Features = () => {
                                     />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="h-3 bg-gray-200 rounded mb-2"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-2/3"></div>
+                                    <div className="h-3 bg-pax-mist rounded mb-2"></div>
+                                    <div className="h-2 bg-pax-cloud rounded w-2/3"></div>
                                   </div>
                                 </div>
                               </div>
 
-                              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100">
+                              <div className="bg-white rounded-xl p-3 border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)]">
                                 <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                                    <CheckCircle className="h-5 w-5 text-emerald-600" />
+                                  <div className="w-10 h-10 bg-pax-sky rounded-full flex items-center justify-center">
+                                    <CheckCircle className="h-5 w-5 text-pax-cyan" />
                                   </div>
                                   <div className="flex-1">
-                                    <div className="h-3 bg-gray-200 rounded mb-2"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-3/4"></div>
+                                    <div className="h-3 bg-pax-mist rounded mb-2"></div>
+                                    <div className="h-2 bg-pax-cloud rounded w-3/4"></div>
                                   </div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Bottom Navigation */}
-                            <div className="flex justify-around pt-4 border-t border-gray-200">
-                              <div className="w-6 h-6 bg-blue-200 rounded"></div>
-                              <div className="w-6 h-6 bg-gray-200 rounded"></div>
-                              <div className="w-6 h-6 bg-gray-200 rounded"></div>
-                              <div className="w-6 h-6 bg-gray-200 rounded"></div>
+                            <div className="flex justify-around pt-4 border-t border-pax-line">
+                              <div className="w-6 h-6 bg-pax-sky rounded"></div>
+                              <div className="w-6 h-6 bg-pax-mist rounded"></div>
+                              <div className="w-6 h-6 bg-pax-mist rounded"></div>
+                              <div className="w-6 h-6 bg-pax-mist rounded"></div>
                             </div>
                           </div>
                         </div>
@@ -273,66 +256,64 @@ const Features = () => {
 
                   {/* Feature Details */}
                   <div className="w-full lg:w-1/2">
-                    <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl">
-                      <CardContent className="p-8">
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="min-w-[64px] min-h-[64px] aspect-square rounded-2xl bg-gradient-to-br from-blue-100 to-emerald-100 flex items-center justify-center shrink-0">
-                            <img
-                              src={feature.icon}
-                              alt={feature.title}
-                              className="w-8 h-8 object-contain"
-                            />
-                          </div>
-
-                          <div>
-                            <h3 className="text-2xl font-bold text-gray-900">
-                              {feature.title}
-                            </h3>
-                          </div>
+                    <div className="pax-card p-6 md:p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="w-12 h-12 rounded-xl bg-pax-sky flex items-center justify-center shrink-0">
+                          <img
+                            src={feature.icon}
+                            alt={feature.title}
+                            className="w-6 h-6 object-contain"
+                          />
                         </div>
 
-                        {/* Problem Statement */}
-                        <div className="mb-6">
-                          <h4 className="font-semibold text-red-600 mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            Problem This Solves
-                          </h4>
-                          <p className="text-gray-700 leading-relaxed bg-red-50 p-4 rounded-lg border-l-4 border-red-200">
-                            {feature.problem}
-                          </p>
+                        <div>
+                          <h3 className="text-2xl font-bold text-pax-navy tracking-tight">
+                            {feature.title}
+                          </h3>
                         </div>
+                      </div>
 
-                        {/* Solution Description */}
-                        <div className="mb-6">
-                          <h4 className="font-semibold text-pexilllin-primary mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-pexilllin-primary rounded-full"></div>
-                            Our Solution
-                          </h4>
-                          <p className="text-gray-700 leading-relaxed">
-                            {feature.description}
-                          </p>
-                        </div>
+                      {/* Problem Statement */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-pax-ink mb-3 flex items-center gap-2">
+                          <div className="w-2 h-2 bg-pax-slate rounded-full"></div>
+                          Problem This Solves
+                        </h4>
+                        <p className="text-sm md:text-base text-pax-slate leading-relaxed bg-pax-cloud p-4 rounded-xl border-l-4 border-pax-line">
+                          {feature.problem}
+                        </p>
+                      </div>
 
-                        {/* Key Benefits */}
-                        <div className="space-y-3">
-                          <h4 className="font-semibold text-emerald-600 mb-3 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                            Key Benefits
-                          </h4>
-                          <ul className="space-y-3">
-                            {feature.benefits.map((benefit, idx) => (
-                              <li
-                                key={idx}
-                                className="flex items-start text-sm text-gray-700"
-                              >
-                                <CheckCircle className="w-5 h-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" />
-                                <span>{benefit}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </CardContent>
-                    </Card>
+                      {/* Solution Description */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-pax-ink mb-3 flex items-center gap-2">
+                          <div className="w-2 h-2 bg-pax-cyan rounded-full"></div>
+                          Our Solution
+                        </h4>
+                        <p className="text-sm md:text-base text-pax-slate leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+
+                      {/* Key Benefits */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-pax-ink mb-3 flex items-center gap-2">
+                          <div className="w-2 h-2 bg-pax-green rounded-full"></div>
+                          Key Benefits
+                        </h4>
+                        <ul className="space-y-3">
+                          {feature.benefits.map((benefit, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start text-sm text-pax-slate"
+                            >
+                              <CheckCircle className="w-5 h-5 text-pax-green mr-3 mt-0.5 flex-shrink-0" />
+                              <span>{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -341,12 +322,12 @@ const Features = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-4 bg-pexilllin-primary">
+        <section className="py-20 px-4 bg-pax-navy">
           <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
               Ready to Transform Your Medical Network?
             </h2>
-            <p className="md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="md:text-xl text-white/70 mb-2 max-w-3xl mx-auto">
               Join thousands of healthcare professionals and organization who are
               transforming healthcare networking with Paxillin.
             </p>

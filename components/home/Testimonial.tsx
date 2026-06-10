@@ -79,9 +79,7 @@ const Testimonial: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 pt-8">
-      <h2 className="text-3xl font-bold text-center mb-8 text-pexilllin-secondary">
-        Testimonials
-      </h2>
+      <h2 className="pax-section-title text-center mb-8">Testimonials</h2>
 
       <div
         className="relative h-full"
@@ -95,18 +93,18 @@ const Testimonial: React.FC = () => {
               index === currentIndex
                 ? "opacity-100"
                 : "opacity-0 absolute inset-0"
-            } flex flex-col items-center text-center bg-white p-6 h-full rounded-2xl shadow-lg border border-gray-400`}
+            } flex flex-col items-center text-center pax-card p-8 h-full`}
           >
             <img
               src={testimonial.image}
               alt={testimonial.name}
               className="w-20 h-20 rounded-full mb-4 object-cover"
             />
-            <h3 className="text-xl font-semibold text-gray-800">
+            <h3 className="text-xl font-semibold text-pax-ink">
               {testimonial.name}
             </h3>
-            <p className="text-sm text-gray-500 mb-4">{testimonial.role}</p>
-            <div className="text-gray-700 text-base leading-relaxed h-32 overflow-hidden">
+            <p className="text-sm text-pax-cyan mb-4">{testimonial.role}</p>
+            <div className="text-pax-slate text-base leading-relaxed h-32 overflow-hidden">
               "{testimonial.message}"
             </div>
           </div>
@@ -119,8 +117,8 @@ const Testimonial: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-gray-800" : "bg-gray-400"
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+              index === currentIndex ? "bg-pax-cyan" : "bg-pax-line"
             }`}
           />
         ))}

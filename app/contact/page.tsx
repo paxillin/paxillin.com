@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import FeedbackForm from "@/components/forms/FeedbackForm";
-
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Mail,
   MapPin,
@@ -105,58 +100,50 @@ const Contact = () => {
 
   return (
     <PageLayout>
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans">
-      <Header />
+      <div className="min-h-screen bg-white">
+        <Header />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto text-center">
-          <h1
-            className="text-5xl md:text-7xl font-bold block text-transparent bg-clip-text bg-gradient-to-r from-[#0f2c4d] via-[#165176] to-[#3CAFE6]
+        {/* Hero Section */}
+        <section className="bg-pax-cloud border-b border-pax-line">
+          <div className="container mx-auto px-4 py-16 md:py-20 text-center">
+            <span className="pax-chip mb-5">We&apos;re Here to Help</span>
+            <h1 className="pax-section-title mb-4">Contact Us</h1>
+            <p className="pax-section-sub max-w-3xl mx-auto leading-relaxed">
+              We&apos;re here to help healthcare professionals and organizations
+              to connect , collaborate and have meaningful engagement. Reach out
+              to us for support, partnerships, or general inquiries.
+            </p>
+          </div>
+        </section>
 
- mb-8"
-          >
-            Contact <span className="">Us</span>
-          </h1>
-          <p className="text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're here to help healthcare professionals and organizations to
-            connect , collaborate and have meaningful engagement. Reach out to
-            us for support, partnerships, or general inquiries.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="py-16 px-4 bg-white/70 backdrop-blur-sm">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {contactInfo.map((info, index) => (
-              <Card
-                key={info.title}
-                className="p-6 border-0 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <CardContent className="p-0 text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <info.icon className="h-8 w-8 text-pexilllin-primary" />
+        {/* Contact Information */}
+        <section className="py-16 md:py-20">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {contactInfo.map((info) => (
+                <div key={info.title} className="pax-card p-8 text-center">
+                  <div className="w-12 h-12 bg-pax-sky rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <info.icon className="h-6 w-6 text-pax-cyan" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-pax-ink mb-2">
                     {info.title}
                   </h3>
-                  <p className="text-lg text-pexilllin-primary font-semibold mb-2">
+                  <p className="text-base text-pax-cyan font-semibold mb-2">
                     {info.details}
                   </p>
-                  <p className="text-gray-600 text-base">{info.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+                  <p className="text-sm text-pax-slate">{info.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <FeedbackForm />
+        <section className="pb-16 md:pb-20 bg-white">
+          <FeedbackForm />
+        </section>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </PageLayout>
   );
 };

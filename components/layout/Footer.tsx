@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -13,45 +12,18 @@ const Footer = () => {
   const handleNewsletterSignup = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-
     toast({
       title: "Subscribed!",
       description: "Thank you for subscribing to our newsletter.",
-      className: "text-pexilllin-primary",
+      className: "text-pax-cyan",
     });
     setEmail("");
   };
 
   const socialLinks = [
-    {
-      name: "Facebook",
-      href: "/social",
-      icon: (
-        <img src="/icons/facebook.png" alt="Facebook" className="w-5 h-5 object-contain" />
-      ),
-    },
-    {
-      name: "Instagram",
-      href: "/social",
-      icon: (
-        <img
-          src="/icons/instagram.png"
-          alt="Instagram"
-          className="w-5 h-5 object-contain"
-        />
-      ),
-    },
-    {
-      name: "LinkedIn",
-      href: "/social",
-      icon: (
-        <img
-          src="/icons/linkedIn.png"
-          alt="LinkedIn"
-          className="w-5 h-5 object-contain"
-        />
-      ),
-    },
+    { name: "Facebook", href: "/social", icon: "/icons/facebook.png" },
+    { name: "Instagram", href: "/social", icon: "/icons/instagram.png" },
+    { name: "LinkedIn", href: "/social", icon: "/icons/linkedIn.png" },
   ];
 
   const footerLinks = [
@@ -83,95 +55,89 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white pb-12 font-sans">
-      {/* Newsletter Section */}
-      <div className="hidden lg:flex">
+    <footer className="bg-pax-navy text-white">
+      {/* Newsletter */}
+      <div className="border-b border-white/10 relative overflow-hidden">
         <img
           src="/images/doctorSeal.svg"
-          alt="Doctor Approved"
-          className="w-[150px] mt-6 absolute right-10 h-[200px] object-contain"
+          alt=""
+          aria-hidden="true"
+          className="hidden lg:block w-[140px] absolute right-10 top-8 opacity-80 object-contain"
         />
-      </div>
-      <div className="border-b border-gray-800">
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-14">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-lg md:text-3xl font-bold mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">
               Stay Connected with Healthcare Innovation
             </h3>
-            <p className="text-sm md:text-base text-gray-400 mb-8">
-              Get the latest updates on Paxillin's development, healthcare
+            <p className="text-sm md:text-base text-white/70 mb-8">
+              Get the latest updates on Paxillin&apos;s development, healthcare
               networking insights, and early access opportunities.
             </p>
-
             <form
               onSubmit={handleNewsletterSignup}
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
             >
               <Input
                 type="email"
                 placeholder="Enter Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                className="flex-1 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 px-5"
                 required
               />
-              <Button type="submit" className="bg-pexilllin-primary text-white">
+              <button
+                type="submit"
+                className="rounded-full bg-pax-cyan hover:bg-pax-cyan-dark text-white font-semibold px-7 py-2.5 text-sm transition-colors"
+              >
                 Join Us
-              </Button>
+              </button>
             </form>
           </div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="container relative mx-auto px-4 py-12">
-        <div className="lg:hidden">
-          <img
-            src="/images/doctorSeal.svg"
-            alt="Doctor Approved"
-            className="w-[100px] mt-3 top-0 absolute right-5 h-[80px] object-contain"
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand Section */}
+      {/* Main footer */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 text-left">
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-2">
-              <img
-                src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
-                alt="Paxillin"
-                className="w-10 h-10"
-              />
-              <span className="text-2xl font-bold text-pexilllin-primary">
-                Paxillin
+            <div className="flex items-center gap-2 mb-3">
+              <span className="bg-white rounded-xl p-1 inline-flex">
+                <img
+                  src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
+                  alt="Paxillin"
+                  className="w-9 h-9"
+                />
               </span>
+              <span className="text-2xl font-bold">Paxillin</span>
             </div>
-            <h1 className="text-white text-left text-xl my-3 max-w-sm">
+            <p className="text-lg font-semibold mb-2">
               Empowering Doctor Connections
-            </h1>
-            <p className="text-gray-400 text-left mb-6 max-w-sm ">
-              The Healthcare Networking Platform — <br />
-              Secure, Collaborative, and Designed for Meaningful Engagement
             </p>
-
-            {/* Social Links */}
-            <div className="flex space-x-4">
+            <p className="text-white/60 text-sm mb-6 max-w-sm leading-relaxed">
+              The Healthcare Networking Platform — Secure, Collaborative, and
+              Designed for Meaningful Engagement
+            </p>
+            <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-lg hover:bg-pexilllin-primary transition-all duration-300 transform hover:scale-110"
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-pax-cyan transition-colors duration-200"
                   aria-label={social.name}
                 >
-                  {social.icon}
+                  <img
+                    src={social.icon}
+                    alt={social.name}
+                    className="w-4 h-4 object-contain"
+                  />
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Footer Links */}
           {footerLinks.map((section) => (
-            <div key={section.title} className="text-left">
-              <h4 className="text-lg font-semibold mb-4 text-pexilllin-primary">
+            <div key={section.title}>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50 mb-4">
                 {section.title}
               </h4>
               <ul className="space-y-3">
@@ -179,7 +145,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                      className="text-sm text-white/80 hover:text-white transition-colors duration-200"
                     >
                       {link.name}
                     </Link>
@@ -191,15 +157,18 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © 2025 Paxillin. All Rights Reserved. Compliant Enterprise-Grade
-              Security. Compliant Healthcare Networking Platform.
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="container mx-auto px-4 py-5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+            <p className="text-white/50 text-xs">
+              © {new Date().getFullYear()} Paxillin. All Rights Reserved.
+              Enterprise-Grade Security. Compliant Healthcare Networking
+              Platform.
             </p>
-            <span className="text-pexilllin-primary">🔒 Secure Platform</span>
+            <span className="pax-chip !bg-white/10 !text-white/80">
+              🔒 Secure Platform
+            </span>
           </div>
         </div>
       </div>

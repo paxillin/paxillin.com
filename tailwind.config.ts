@@ -18,6 +18,7 @@ export default {
     },
     extend: {
       fontFamily: {
+        sans: ['"Inter"', "system-ui", "-apple-system", "sans-serif"],
         serif: ['"Times New Roman"', "Times", "serif"],
       },
       colors: {
@@ -75,10 +76,26 @@ export default {
           700: "#0369a1",
           800: "#075985",
           900: "#0c4a6e",
-          primary: "#138DB6",
+          primary: "#1288B0",
           secondary: "#193F63",
           accent: "#8b5cf6",
           dark: "#075985",
+        },
+        // Paxillin app design tokens (sampled from the app UI)
+        pax: {
+          navy: "#193F63", // primary buttons, headings
+          "navy-dark": "#122E49", // hover
+          cyan: "#1288B0", // brand, links, active states
+          "cyan-dark": "#0E6F90",
+          teal: "#0097A7",
+          sky: "#E0F7FA", // light-cyan chips / highlights
+          ice: "#E5F9FF", // selected-state fills
+          mist: "#EBF0F3", // app page background
+          cloud: "#F4F7F9", // section background
+          line: "#E2E8EC", // card borders
+          ink: "#0F1E2E", // primary text
+          slate: "#698299", // secondary text
+          green: "#197D00", // success
         },
       },
       borderRadius: {
