@@ -1,12 +1,194 @@
 "use client";
 
-import { CheckCircle } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { CheckCircle, Sparkles } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageLayout from "@/components/layout/PageLayout";
 
+type Feature = {
+  icon: string;
+  title: string;
+  problem: string;
+  description: string;
+  benefits: string[];
+  mockupFeature: string;
+};
+
+/* Phone mockup — chrome stays static, the feature block crossfades softly */
+const PhoneMockup = ({
+  feature,
+  swapKey,
+}: {
+  feature: Feature;
+  swapKey?: number;
+}) => (
+  <div className="w-72 sm:w-80 h-[600px] sm:h-[640px] bg-pax-navy rounded-[3rem] p-2 shadow-[0_16px_40px_rgba(25,63,99,0.18)]">
+    <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+      <div className="absolute inset-0 bg-pax-cloud p-6 flex flex-col">
+        {/* Status Bar (static) */}
+        <div className="flex justify-between items-center text-xs text-pax-slate mb-4">
+          <span>9:41</span>
+          <div className="flex items-center gap-1">
+            <div className="w-4 h-2 bg-pax-green rounded-sm"></div>
+            <span>100%</span>
+          </div>
+        </div>
+
+        {/* App Header (static) */}
+        <div className="flex items-center gap-3 mb-6">
+          <img
+            src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
+            alt="paxillin"
+            className="w-8 h-8"
+          />
+          <span className="text-lg font-bold text-pax-navy">Paxillin</span>
+        </div>
+
+        {/* Feature block (crossfades on swapKey change) */}
+        <div
+          key={swapKey}
+          className="flex-1 flex flex-col animate-pax-soft-in"
+        >
+          {/* Feature Icon */}
+          <div className="w-16 h-16 rounded-2xl bg-pax-sky flex items-center justify-center mb-4 mx-auto">
+            <img src={feature.icon} alt={feature.title} className="h-8 w-8" />
+          </div>
+
+          {/* Feature Title */}
+          <h3 className="text-center text-lg font-bold text-pax-ink mb-2">
+            {feature.title}
+          </h3>
+
+          {/* Mockup Feature Description */}
+          <p className="text-center text-sm text-pax-slate mb-4">
+            {feature.mockupFeature}
+          </p>
+
+          {/* Mock Interface Elements */}
+          <div className="flex-1 space-y-3">
+            <div className="bg-white rounded-xl p-3 border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)]">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-pax-sky rounded-full flex items-center justify-center">
+                  <img
+                    src={feature.icon}
+                    alt={feature.title}
+                    className="h-5 w-5 object-contain"
+                  />
+                </div>
+                <div className="flex-1">
+                  <div className="h-3 bg-pax-mist rounded mb-2"></div>
+                  <div className="h-2 bg-pax-cloud rounded w-2/3"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-3 border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)]">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-pax-sky rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-5 w-5 text-pax-cyan" />
+                </div>
+                <div className="flex-1">
+                  <div className="h-3 bg-pax-mist rounded mb-2"></div>
+                  <div className="h-2 bg-pax-cloud rounded w-3/4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Navigation (static) */}
+        <div className="flex justify-around pt-4 border-t border-pax-line">
+          <div className="w-6 h-6 bg-pax-sky rounded"></div>
+          <div className="w-6 h-6 bg-pax-mist rounded"></div>
+          <div className="w-6 h-6 bg-pax-mist rounded"></div>
+          <div className="w-6 h-6 bg-pax-mist rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* Detail card — redesigned problem / solution / benefits */
+const FeatureDetails = ({
+  feature,
+  index,
+  total,
+}: {
+  feature: Feature;
+  index: number;
+  total: number;
+}) => (
+  <div className="pax-card p-6 md:p-8">
+    {/* Header */}
+    <div className="flex items-center gap-4 mb-6">
+      <div className="w-12 h-12 rounded-xl bg-pax-sky flex items-center justify-center shrink-0">
+        <img
+          src={feature.icon}
+          alt={feature.title}
+          className="w-6 h-6 object-contain"
+        />
+      </div>
+      <h3 className="flex-1 text-2xl font-bold text-pax-navy tracking-tight">
+        {feature.title}
+      </h3>
+      <span className="text-xs font-semibold text-pax-slate tabular-nums shrink-0">
+        {String(index + 1).padStart(2, "0")}
+        <span className="text-pax-line"> / {String(total).padStart(2, "0")}</span>
+      </span>
+    </div>
+
+    {/* Problem — clean labeled text, no heavy gray box */}
+    <div className="mb-6">
+      <div className="flex items-center gap-3 mb-2">
+        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-pax-slate">
+          The Challenge
+        </span>
+        <div className="h-px flex-1 bg-pax-line"></div>
+      </div>
+      <p className="text-sm md:text-base text-pax-slate leading-relaxed">
+        {feature.problem}
+      </p>
+    </div>
+
+    {/* Solution — highlighted, on-brand */}
+    <div className="mb-6 rounded-2xl bg-gradient-to-br from-pax-sky/70 to-pax-ice/40 border border-pax-ice p-5">
+      <div className="flex items-center gap-2 mb-2">
+        <Sparkles className="w-4 h-4 text-pax-cyan" />
+        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-pax-cyan">
+          Our Solution
+        </span>
+      </div>
+      <p className="text-sm md:text-base text-pax-ink leading-relaxed">
+        {feature.description}
+      </p>
+    </div>
+
+    {/* Key Benefits */}
+    <div>
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-pax-green">
+          Key Benefits
+        </span>
+        <div className="h-px flex-1 bg-pax-line"></div>
+      </div>
+      <ul className="space-y-3">
+        {feature.benefits.map((benefit, idx) => (
+          <li
+            key={idx}
+            className="flex items-start text-sm text-pax-slate"
+          >
+            <CheckCircle className="w-5 h-5 text-pax-green mr-3 mt-0.5 flex-shrink-0" />
+            <span>{benefit}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+);
+
 const Features = () => {
-  const features = [
+  const features: Feature[] = [
     {
       icon: "/icons/geoLocation.png",
       title: "Geographic Toggling",
@@ -129,6 +311,48 @@ const Features = () => {
     },
   ];
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const viewportCenter = window.innerHeight / 2;
+      let closest = 0;
+      let closestDistance = Infinity;
+
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = i;
+        }
+      });
+
+      setActiveIndex((prev) => (prev === closest ? prev : closest));
+    };
+
+    // throttle scroll work to one calc per animation frame
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <PageLayout>
       <div className="min-h-screen bg-white font-sans">
@@ -153,170 +377,62 @@ const Features = () => {
         {/* Features Section */}
         <section className="py-16 md:py-20 px-4">
           <div className="container mx-auto">
-            <div className="space-y-20 md:space-y-24">
-              {features.map((feature, index) => (
-                <div
-                  key={feature.title}
-                  className={`flex flex-col text-left lg:flex-row items-center gap-12 ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  } animate-fade-in`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  {/* Mobile Mockup */}
-                  <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="relative">
-                      {/* Phone Frame */}
-                      <div className="w-80 h-[640px] bg-pax-navy rounded-[3rem] p-2 shadow-[0_16px_40px_rgba(25,63,99,0.18)]">
-                        <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                          {/* Phone Screen Content */}
-                          <div className="absolute inset-0 bg-pax-cloud p-6 flex flex-col">
-                            {/* Status Bar */}
-                            <div className="flex justify-between items-center text-xs text-pax-slate mb-4">
-                              <span>9:41</span>
-                              <div className="flex items-center gap-1">
-                                <div className="w-4 h-2 bg-pax-green rounded-sm"></div>
-                                <span>100%</span>
-                              </div>
-                            </div>
-
-                            {/* App Header */}
-                            <div className="flex items-center gap-3 mb-6">
-                              <img
-                                src="/lovable-uploads/883ae812-41b7-4f12-8dc5-599b1c93a623.png"
-                                alt="paxillin"
-                                className="w-8 h-8"
-                              />
-                              <span className="text-lg font-bold text-pax-navy">
-                                Paxillin
-                              </span>
-                            </div>
-
-                            {/* Feature Icon */}
-                            <div className="w-16 h-16 rounded-2xl bg-pax-sky flex items-center justify-center mb-4 mx-auto">
-                              <img
-                                src={feature.icon}
-                                alt={feature.title}
-                                className="h-8 w-8"
-                              />
-                            </div>
-
-                            {/* Feature Title in Mockup */}
-                            <h3 className="text-center text-lg font-bold text-pax-ink mb-2">
-                              {feature.title}
-                            </h3>
-
-                            {/* Mockup Feature Description */}
-                            <p className="text-center text-sm text-pax-slate mb-4">
-                              {feature.mockupFeature}
-                            </p>
-
-                            {/* Mock Interface Elements */}
-                            <div className="flex-1 space-y-3">
-                              <div className="bg-white rounded-xl p-3 border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)]">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 bg-pax-sky rounded-full flex items-center justify-center">
-                                    <img
-                                      src={feature.icon}
-                                      alt={feature.title}
-                                      className="h-5 w-5 object-contain"
-                                    />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="h-3 bg-pax-mist rounded mb-2"></div>
-                                    <div className="h-2 bg-pax-cloud rounded w-2/3"></div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="bg-white rounded-xl p-3 border border-pax-line shadow-[0_1px_3px_rgba(15,30,46,0.06)]">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 bg-pax-sky rounded-full flex items-center justify-center">
-                                    <CheckCircle className="h-5 w-5 text-pax-cyan" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="h-3 bg-pax-mist rounded mb-2"></div>
-                                    <div className="h-2 bg-pax-cloud rounded w-3/4"></div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Bottom Navigation */}
-                            <div className="flex justify-around pt-4 border-t border-pax-line">
-                              <div className="w-6 h-6 bg-pax-sky rounded"></div>
-                              <div className="w-6 h-6 bg-pax-mist rounded"></div>
-                              <div className="w-6 h-6 bg-pax-mist rounded"></div>
-                              <div className="w-6 h-6 bg-pax-mist rounded"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Feature Details */}
-                  <div className="w-full lg:w-1/2">
-                    <div className="pax-card p-6 md:p-8">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-pax-sky flex items-center justify-center shrink-0">
-                          <img
-                            src={feature.icon}
-                            alt={feature.title}
-                            className="w-6 h-6 object-contain"
-                          />
-                        </div>
-
-                        <div>
-                          <h3 className="text-2xl font-bold text-pax-navy tracking-tight">
-                            {feature.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* Problem Statement */}
-                      <div className="mb-6">
-                        <h4 className="font-semibold text-pax-ink mb-3 flex items-center gap-2">
-                          <div className="w-2 h-2 bg-pax-slate rounded-full"></div>
-                          Problem This Solves
-                        </h4>
-                        <p className="text-sm md:text-base text-pax-slate leading-relaxed bg-pax-cloud p-4 rounded-xl border-l-4 border-pax-line">
-                          {feature.problem}
-                        </p>
-                      </div>
-
-                      {/* Solution Description */}
-                      <div className="mb-6">
-                        <h4 className="font-semibold text-pax-ink mb-3 flex items-center gap-2">
-                          <div className="w-2 h-2 bg-pax-cyan rounded-full"></div>
-                          Our Solution
-                        </h4>
-                        <p className="text-sm md:text-base text-pax-slate leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </div>
-
-                      {/* Key Benefits */}
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-pax-ink mb-3 flex items-center gap-2">
-                          <div className="w-2 h-2 bg-pax-green rounded-full"></div>
-                          Key Benefits
-                        </h4>
-                        <ul className="space-y-3">
-                          {feature.benefits.map((benefit, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start text-sm text-pax-slate"
-                            >
-                              <CheckCircle className="w-5 h-5 text-pax-green mr-3 mt-0.5 flex-shrink-0" />
-                              <span>{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+            <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
+              {/* Sticky phone — desktop only, content swaps softly */}
+              <div className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
+                <div className="flex justify-center">
+                  <PhoneMockup
+                    feature={features[activeIndex]}
+                    swapKey={activeIndex}
+                  />
                 </div>
-              ))}
+
+                {/* Progress dots */}
+                <div className="flex justify-center items-center gap-2 mt-8">
+                  {features.map((feature, i) => (
+                    <button
+                      key={feature.title}
+                      type="button"
+                      aria-label={`Go to ${feature.title}`}
+                      onClick={() =>
+                        cardRefs.current[i]?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "center",
+                        })
+                      }
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        i === activeIndex
+                          ? "w-8 bg-pax-cyan"
+                          : "w-2 bg-pax-line hover:bg-pax-slate/40"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Scrolling feature cards */}
+              <div className="space-y-16 md:space-y-20 lg:space-y-28">
+                {features.map((feature, index) => (
+                  <div
+                    key={feature.title}
+                    ref={(el) => {
+                      cardRefs.current[index] = el;
+                    }}
+                    className="scroll-mt-24 animate-fade-in"
+                  >
+                    {/* Inline phone on mobile (single column — no jump) */}
+                    <div className="lg:hidden mb-8 flex justify-center">
+                      <PhoneMockup feature={feature} />
+                    </div>
+
+                    <FeatureDetails
+                      feature={feature}
+                      index={index}
+                      total={features.length}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

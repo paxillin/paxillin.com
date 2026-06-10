@@ -138,6 +138,28 @@
   }
 }
 
+/* Soft crossfade for the sticky feature phone content */
+@keyframes pax-soft-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-pax-soft-in {
+  animation: pax-soft-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pax-soft-in {
+    animation: none;
+  }
+}
+
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
 }

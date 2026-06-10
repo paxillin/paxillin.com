@@ -11,7 +11,7 @@ const FAQSection = () => {
   {
     question: "When will Paxillin be available for download?",
     answer:
-      "We're launching in phases: Alpha testing (Q1 2025) for 100 users, Beta testing (Q2 2025) for 1,000 users, and Public Release (Q3 2025) for everyone. Sign up now to get early access based on your preferred testing phase."
+      "We're launching in phases: Alpha testing (Q1 2027) for 100 users, Beta testing (Q2 2027) for 1,000 users, and Public Release (Q3 2027) for everyone. Sign up now to get early access based on your preferred testing phase."
   },
   {
     question: "Is Paxillin free to use?",
